@@ -1,0 +1,8 @@
+{
+    "id": "l1",
+    "host": "u1", 
+    "name": "Fruits",
+    "items": [{"name": "Apples", "qty": 2, "checked":false}, {"name": "Bananas", "qty": 4, "checked":false}, {"name": "Lemons", "qty": 1, "checked":false}],
+    "guests": [{"id": "u2"}, {"id": "u3"}],
+    "archived": false
+}

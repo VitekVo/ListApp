@@ -1,24 +1,24 @@
-import logo from './logo.svg';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+
+import ListOverview from './components/list_overview/ListOverview';
+import ListDetail from './components/list_detail/ListDetail';
+import TopBar from './components/top_bar/TopBar';
+
+import UserProvider from './providers/UserProvider';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserProvider>
+        <Router>
+        <TopBar/>
+          <Routes>
+            <Route path="/list-overview" element={<ListOverview />} />
+            <Route path="/" element={<ListDetail />} />
+          </Routes>
+        </Router>
+    </UserProvider>
   );
 }
 
