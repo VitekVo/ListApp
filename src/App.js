@@ -7,6 +7,7 @@ import ListDetail from './components/list_detail/ListDetail';
 import TopBar from './components/top_bar/TopBar';
 
 import UserProvider from './providers/UserProvider';
+import ListDetailProvider from './providers/ListDetailProvider';
 
 function App() {
   return (
@@ -15,7 +16,11 @@ function App() {
         <TopBar/>
           <Routes>
             <Route path="/list-overview" element={<ListOverview />} />
-            <Route path="/" element={<ListDetail />} />
+            <Route path="/" element={
+              <ListDetailProvider>
+                <ListDetail/>
+              </ListDetailProvider>
+             }/>
           </Routes>
         </Router>
     </UserProvider>

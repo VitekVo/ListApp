@@ -1,5 +1,8 @@
 .top-bar {
-  background-color: rgba(114, 110, 110, 0.744);
+  position: static;
+  top: 0;
+  width: 100%;
+  background-color: rgb(118, 112, 112);
   padding: 5px;
 }
 

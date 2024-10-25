@@ -1,0 +1,18 @@
+[
+    {
+        "id": "l1",
+        "host": "u1", 
+        "name": "Fruits",
+        "items": [{"name": "Apples", "qty": 2, "checked":false}, {"name": "Bananas", "qty": 4, "checked":false}, {"name": "Lemons", "qty": 1, "checked":false}],
+        "guests": ["u2", "u3"],
+        "archived": false
+    },
+    {
+        "id": "l2",
+        "host": "u2", 
+        "name": "Furniture",
+        "items": [{"name": "Chair", "qty": 4, "checked":false}, {"name": "Table", "qty": 1, "checked":false}, {"name": "Drawers", "qty": 2, "checked":false}],
+        "guests": ["u2"],
+        "archived": false
+    }
+]
