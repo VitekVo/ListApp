@@ -4,9 +4,12 @@
 function ControlPanel() {
     return (
         <div className="control-panel">
-            <button className="btn btn-primary">List name</button>
+            <div>
+            <button className="btn btn-primary">Fruits</button>
+            <p>Owner: Adam</p>
+            </div>
             <button className="btn btn-primary">Add new item</button>
-            <button className="btn btn-primary">Invited users</button>
+            <button className="btn btn-primary">Invited users: {2}</button>
         </div>
     );
 }
