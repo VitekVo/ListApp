@@ -3,7 +3,7 @@
         "id": "l1",
         "host": "u1", 
         "name": "Fruits",
-        "items": [{"name": "Apples", "qty": 2, "checked":false}, {"name": "Bananas", "qty": 4, "checked":false}, {"name": "Lemons", "qty": 1, "checked":false}],
+        "items": [{"id": "i1", "name": "Apples", "qty": 2, "checked":false}, {"id": "i2", "name": "Bananas", "qty": 4, "checked":false}, {"id": "i1", "name": "Lemons", "qty": 1, "checked":false}],
         "guests": ["u2", "u3"],
         "archived": false
     },
@@ -11,7 +11,7 @@
         "id": "l2",
         "host": "u2", 
         "name": "Furniture",
-        "items": [{"name": "Chair", "qty": 4, "checked":false}, {"name": "Table", "qty": 1, "checked":false}, {"name": "Drawers", "qty": 2, "checked":false}],
+        "items": [{"id": "i1", "name": "Chair", "qty": 4, "checked":false}, {"id": "i2", "name": "Table", "qty": 1, "checked":false}, {"id": "i3", "name": "Drawers", "qty": 2, "checked":false}],
         "guests": ["u2"],
         "archived": false
     }

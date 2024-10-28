@@ -1,30 +1,6 @@
 import React from 'react';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
-<<<<<<< HEAD
-import Icon from '@mdi/react';
-import { mdiAccount } from '@mdi/js';
-import { UserContext } from "../../providers/UserProvider.js";
-import { useContext } from 'react';
-
-
-function TopBar () {
-  const navigate = useNavigate();
-  const { userList, loggedInUser, setLoggedInUser } = useContext(UserContext);
-
-  return (
-    <div className="top-bar d-flex justify-content-between">
-      <button className="btn btn-primary" onClick={()=>navigate('/list-overview')}>MrLister</button>
-      {/* <button className="btn btn-primary">Create New List</button> */}
-      
-      <div className="dropdown">
-        
-        <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><Icon path={mdiAccount}
-        title="User Profile"
-        size={1}
-        color="white"
-      /></button>
-=======
 import { UserContext } from '../../providers/UserProvider';
 
 function TopBar () {
@@ -35,7 +11,6 @@ function TopBar () {
       <button className="btn btn-primary" onClick={()=>navigate('/list-overview')}>MrLister</button>
       <div className="dropdown">
         <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{userList.find(user => user.id === loggedInUser)?.name}</button>
->>>>>>> bf5e7633099a368d8d2c39983391a5faf4beff04
         <ul className="dropdown-menu">
         {userList.map((user) => (
           <li key={user.id}>

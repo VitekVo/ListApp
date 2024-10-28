@@ -6,16 +6,6 @@ import { UserContext } from './UserProvider';
 
 export const ListDetailContext = createContext();
 
-<<<<<<< HEAD
-function ListDetailProvider({  }) {
-
-
-  return 
-  // <ListDetailContext.Provider value={data, handlerMap :{}}>
-  //   {children}
-  // </ListDetailContext.Provider>;
-  
-=======
 function ListDetailProvider({ children }) {
   const { activeList } = useContext(UserContext);
 
@@ -30,13 +20,37 @@ function ListDetailProvider({ children }) {
     }))
   }
 
+  const addItem = (itemName, quantity) => {
+    setList(prevList => ({
+      ...prevList,
+      items: [...prevList.items,
+        {"name": itemName, "qty": quantity, "checked": false}]
+    }))
+  }
+
+  const addUser = (userID) => {
+    setList(prevList => ({
+      ...prevList,
+      guests: [...prevList.guests, userID]
+    }))
+  }
+
+  const removeUser = (userID) => {
+    setList(prevList => ({
+      ...prevList,
+      guests: prevList.guests.filter(user => user !== userID)
+    }));
+  };
+
   const value = {
     list,
-    changeName
+    changeName,
+    addItem,
+    addUser,
+    removeUser
 };
 
   return <ListDetailContext.Provider value={value}>{children}</ListDetailContext.Provider>;
->>>>>>> bf5e7633099a368d8d2c39983391a5faf4beff04
 }
 
 export default ListDetailProvider;
