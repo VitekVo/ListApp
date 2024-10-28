@@ -5,9 +5,9 @@
 function Item() {
     return (
     <div className="item">
-        <h3>Apple</h3>
+        <h3>a</h3>
         <button className="btn btn-danger">Delete</button>
-        <p>Qty: 2</p>
+        <p>1</p>
         <button className="btn btn-success">Tick off</button>
     </div>
     );
