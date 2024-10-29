@@ -1,19 +1,39 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ListDetailContext } from '../../providers/ListDetailProvider';
 import { UserContext } from '../../providers/UserProvider';
+import { Modal } from 'react-bootstrap'
 
-const ManageUsers = ({ onClose }) => {
+const ManageUsers = () => {
   const { list, addUser, removeUser } = useContext(ListDetailContext);
-  const { userList } = useContext(UserContext);
+  const { userList, loggedInUser } = useContext(UserContext);
   const [userID, setUserID] = useState('');
+  const [message, setMessage] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const handleClose = () => setShowModal(false)
+  const navigate = useNavigate();
 
   const guests = userList.filter(user => list.guests.includes(user.id));
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    addUser(userID);
-    onClose();
+    if (list.guests.includes(userID)) {
+      setMessage('This user is already on the list'); 
+      setShowModal(true);
+    } 
+    else if (!(list.guests.includes(loggedInUser)) && (loggedInUser !== list.host)) {
+      console.log(list.guests);
+      console.log(loggedInUser);
+      navigate('/list-overview');
+      console.log(list.guests);
+    }
+
+    else {
+      setMessage('User added successfully');
+      setShowModal(true);
+      addUser(userID);
+      setUserID('');
+    }
   };
 
   return (
@@ -24,23 +44,33 @@ const ManageUsers = ({ onClose }) => {
       <ul>
         {guests.map(guest => (
           <li key={guest.id}>
-            {guest.name} <button onClick={() => removeUser(guest.id)}>Remove</button>
+            {guest.name} 
+            {(loggedInUser === list.host) &&
+            <button className="btn btn-danger" onClick={() => removeUser(guest.id)}>Remove</button>
+            }
           </li>
         ))}
       </ul>
-    </div>
-
-      
-        <label className="form-label">Add new user</label>
+    </div>      
+        <label className="form-label">Enter user's ID to add him to this list</label>
         <input
           type="text"
           className="form-control"
           value={userID}
           onChange={(e) => setUserID(e.target.value)}
-          required
         />
       </div>
       <button type="submit" className="btn btn-primary">Add user</button>
+      {loggedInUser !== list.host &&
+      <button type="submit" className="btn btn-danger" onClick={()=>removeUser(loggedInUser)}>Leave list</button>
+}
+      <Modal show={showModal} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{message}</Modal.Body>
+        <Modal.Footer><button className="btn btn-secondary" onClick={() =>handleClose()}>Ok</button></Modal.Footer>
+      </Modal>
     </form>
   );
 };

@@ -14,8 +14,6 @@ function ItemOverview() {
             </div> 
             <div className="item-overview">
                 <Item></Item>
-                <Item></Item>
-                <Item></Item>
             </div>
         </div>
     );

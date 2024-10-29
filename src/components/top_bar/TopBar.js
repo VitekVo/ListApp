@@ -8,9 +8,9 @@ function TopBar () {
   const { userList, loggedInUser, setLoggedInUser} = useContext(UserContext);
   return (
     <div className="top-bar d-flex justify-content-between">
-      <button className="btn btn-primary" onClick={()=>navigate('/list-overview')}>MrLister</button>
+      <button className="btn btn-secondary" onClick={()=>navigate('/list-overview')}>MrLister</button>
       <div className="dropdown">
-        <button type="button" className="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{userList.find(user => user.id === loggedInUser)?.name}</button>
+        <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">{userList.find(user => user.id === loggedInUser)?.name}</button>
         <ul className="dropdown-menu">
         {userList.map((user) => (
           <li key={user.id}>
