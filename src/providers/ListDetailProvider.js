@@ -42,12 +42,22 @@ function ListDetailProvider({ children }) {
     }));
   };
 
+  const changeItem = (id, status) => { 
+    setList(prevList => ({ 
+    ...prevList,
+    items: prevList.items.map(item => 
+      item.id === id ? { ...item, checked: status } : item 
+      ) 
+    })); 
+  };
+
   const value = {
     list,
     changeName,
     addItem,
     addUser,
-    removeUser
+    removeUser,
+    changeItem
 };
 
   return <ListDetailContext.Provider value={value}>{children}</ListDetailContext.Provider>;

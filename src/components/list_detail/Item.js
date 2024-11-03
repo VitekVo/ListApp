@@ -2,13 +2,13 @@
 // import { ListDetailProvider } from './providers/ListDetailProvider';
 
 
-function Item() {
+const Item = ({name, qty, changeItem}) => {
     return (
     <div className="item">
-        <h3>a</h3>
+        <h3>{name}</h3>
         <button className="btn btn-danger">Delete</button>
-        <p>1</p>
-        <button className="btn btn-success">Tick off</button>
+        <p>{qty}</p>
+        <button className="btn btn-success" onClick={() => changeItem(true)}>Check off</button>
     </div>
     );
 }

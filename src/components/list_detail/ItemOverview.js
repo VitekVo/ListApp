@@ -1,8 +1,9 @@
-import React from 'react';
-// import { ListDetailProvider } from './providers/ListDetailProvider';
+import React, { useContext } from 'react';
 import Item from './Item';
+import { ListDetailContext } from '../../providers/ListDetailProvider';
 
 function ItemOverview() {
+    const { list, changeItem } = useContext(ListDetailContext)
     return (
         <div>
             <div className="filter-dropdown">
@@ -13,8 +14,9 @@ function ItemOverview() {
                  </ul>
             </div> 
             <div className="item-overview">
-                <Item></Item>
-            </div>
+            {list.items.map(item => ( 
+                <Item key={item.id} name={item.name} quantity={item.quantity} changeItem={changeItem}/> ))}
+            </div>        
         </div>
     );
 }

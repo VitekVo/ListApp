@@ -38,20 +38,21 @@ const ManageUsers = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="mb-3">
-      <div>
-      <h2>Guest List</h2>
-      <ul>
-        {guests.map(guest => (
-          <li key={guest.id}>
-            {guest.name} 
-            {(loggedInUser === list.host) &&
-            <button className="btn btn-danger" onClick={() => removeUser(guest.id)}>Remove</button>
-            }
-          </li>
-        ))}
-      </ul>
-    </div>      
+        <div>
+        <h2>Guest List</h2>
+        <ul>
+          {guests.map(guest => (
+            <li key={guest.id}>
+              {guest.name} 
+              {(loggedInUser === list.host) &&
+              <button className="btn btn-danger" onClick={() => removeUser(guest.id)}>Remove</button>
+              }
+            </li>
+          ))}
+        </ul>
+      </div>
+    {(loggedInUser === list.host) && 
+    <div>
         <label className="form-label">Enter user's ID to add him to this list</label>
         <input
           type="text"
@@ -59,8 +60,10 @@ const ManageUsers = () => {
           value={userID}
           onChange={(e) => setUserID(e.target.value)}
         />
-      </div>
       <button type="submit" className="btn btn-primary">Add user</button>
+    </div>
+    }
+
       {loggedInUser !== list.host &&
       <button type="submit" className="btn btn-danger" onClick={()=>removeUser(loggedInUser)}>Leave list</button>
 }
