@@ -20,9 +20,44 @@ function ListDetailProvider({ children }) {
     }))
   }
 
+  const addItem = (itemName, quantity) => {
+    setList(prevList => ({
+      ...prevList,
+      items: [...prevList.items,
+        {"name": itemName, "qty": quantity, "checked": false}]
+    }))
+  }
+
+  const addUser = (userID) => {
+    setList(prevList => ({
+      ...prevList,
+      guests: [...prevList.guests, userID]
+    }))
+  }
+
+  const removeUser = (userID) => {
+    setList(prevList => ({
+      ...prevList,
+      guests: prevList.guests.filter(user => user !== userID)
+    }));
+  };
+
+  const changeItem = (id, status) => { 
+    setList(prevList => ({ 
+    ...prevList,
+    items: prevList.items.map(item => 
+      item.id === id ? { ...item, checked: status } : item 
+      ) 
+    })); 
+  };
+
   const value = {
     list,
-    changeName
+    changeName,
+    addItem,
+    addUser,
+    removeUser,
+    changeItem
 };
 
   return <ListDetailContext.Provider value={value}>{children}</ListDetailContext.Provider>;

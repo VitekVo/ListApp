@@ -12,8 +12,10 @@ const Modal = ({ onClose, formType }) => {
         return <AddItem onClose={onClose} />;
       case "manageUsers":
         return <ManageUsers onClose={onClose} />;
+      case "addItem":
+        return <AddItem onClose={onClose} />;
       default:
-        return null;
+      return null;
     }
   };
 
@@ -22,7 +24,6 @@ const Modal = ({ onClose, formType }) => {
       <div className="modal-dialog">
         <div className="modal-content text-black">
           <div className="modal-header">
-            <h5 className="modal-title">Modal</h5>
             <button type="button" className="btn-close" onClick={onClose}></button>
           </div>
           <div className="modal-body">
