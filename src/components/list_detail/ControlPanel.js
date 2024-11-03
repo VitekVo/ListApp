@@ -16,9 +16,9 @@ function ControlPanel() {
 
     return (
       <div className="control-panel">
-        <button className="btn btn-primary" onClick={() =>openModal("changeName")}>{list.name}</button>
-        <button className="btn btn-primary">Add new item</button>
-        <button className="btn btn-primary" onClick={() =>openModal("manageUsers")}>Invited users</button>
+        <button className="btn btn-primary" onClick={() =>openModal("changeName")} >{list.name}</button>
+        <button className="btn btn-primary"onClick={() =>openModal("addItem")} >Add new item</button>
+        <button className="btn btn-primary" onClick={() =>openModal("manageUsers")} >Invited users</button>
         {showModal && <Modal onClose={closeModal} formType={formType} />}
       </div>
     );

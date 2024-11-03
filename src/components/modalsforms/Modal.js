@@ -1,5 +1,6 @@
 import React from 'react';
 import ChangeName from './ChangeNameForm';
+import AddItem from './AddItemForm';
 import ManageUsers from './ManageUsersForm';
 
 const Modal = ({ onClose, formType }) => {
@@ -7,6 +8,8 @@ const Modal = ({ onClose, formType }) => {
     switch (formType) {
       case "changeName":
         return <ChangeName onClose={onClose} />;
+      case "addItem":
+        return <AddItem onClose={onClose} />;
       case "manageUsers":
         return <ManageUsers onClose={onClose} />;
       default:
