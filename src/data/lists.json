@@ -12,7 +12,7 @@
         "host": "u2", 
         "name": "Furniture",
         "items": [{"id": "i1", "name": "Chair", "qty": 4, "checked":false}, {"id": "i2", "name": "Table", "qty": 1, "checked":false}, {"id": "i3", "name": "Drawers", "qty": 2, "checked":false}],
-        "guests": ["u2"],
+        "guests": ["u1"],
         "archived": false
     }
 ]

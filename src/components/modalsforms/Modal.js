@@ -12,8 +12,6 @@ const Modal = ({ onClose, formType }) => {
         return <AddItem onClose={onClose} />;
       case "manageUsers":
         return <ManageUsers onClose={onClose} />;
-      case "addItem":
-        return <AddItem onClose={onClose} />;
       default:
       return null;
     }

@@ -24,13 +24,13 @@ function ListDetailProvider({ children }) {
     setList(prevList => ({
       ...prevList,
       items: [...prevList.items,
-        {"name": itemName, "qty": quantity, "checked": false}]
+        {id: Math.random(),"name": itemName, "qty": quantity, "checked": false}]
     }))
   }
 
   const addUser = (userID) => {
     setList(prevList => ({
-      ...prevList,
+      ...prevList,  
       guests: [...prevList.guests, userID]
     }))
   }
@@ -42,13 +42,20 @@ function ListDetailProvider({ children }) {
     }));
   };
 
-  const changeItem = (id, status) => { 
-    setList(prevList => ({ 
-    ...prevList,
-    items: prevList.items.map(item => 
-      item.id === id ? { ...item, checked: status } : item 
-      ) 
-    })); 
+  const changeItem = (itemID) => {
+    setList((prevList) => ({
+      ...prevList,
+      items: prevList.items.map((item) =>
+        item.id === itemID ? { ...item, checked: !item.checked } : item
+      )
+    }));
+  };
+
+  const deleteItem = (itemID) => {
+    setList(prevList => ({
+      ...prevList,
+      items: prevList.items.filter((item) => item.id !== itemID)
+    }));
   };
 
   const value = {
@@ -57,7 +64,8 @@ function ListDetailProvider({ children }) {
     addItem,
     addUser,
     removeUser,
-    changeItem
+    changeItem,
+    deleteItem
 };
 
   return <ListDetailContext.Provider value={value}>{children}</ListDetailContext.Provider>;

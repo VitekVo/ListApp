@@ -18,9 +18,9 @@ function ControlPanel() {
 
     return (
       <div className="control-panel">
-        <h1>{list.name}
+        <h1 className="header-one">{list.name}
           {loggedInUser === list.host &&
-        <button className="btn btn-primary" onClick={() =>openModal("changeName")} >Edit</button>
+        <button className="btn btn-primary" style={{padding:"5px", margin:"5px"}}onClick={() =>openModal("changeName")} >Edit</button>
           }
         </h1>
         <button className="btn btn-primary" onClick={() =>openModal("addItem")} >Add new item</button>

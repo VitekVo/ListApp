@@ -22,10 +22,7 @@ const ManageUsers = () => {
       setShowModal(true);
     } 
     else if (!(list.guests.includes(loggedInUser)) && (loggedInUser !== list.host)) {
-      console.log(list.guests);
-      console.log(loggedInUser);
       navigate('/list-overview');
-      console.log(list.guests);
     }
 
     else {
