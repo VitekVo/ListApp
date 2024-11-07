@@ -1,7 +1,8 @@
-import React from 'react';
-import ChangeName from './ChangeNameForm';
-import AddItem from './AddItemForm';
-import ManageUsers from './ManageUsersForm';
+import React from "react";
+import ChangeName from "./ChangeNameForm";
+import AddItem from "./AddItemForm";
+import ManageUsers from "./ManageUsersForm";
+import CreateList from "./CreateListForm";
 
 const Modal = ({ onClose, formType }) => {
   const renderForm = () => {
@@ -12,8 +13,10 @@ const Modal = ({ onClose, formType }) => {
         return <AddItem onClose={onClose} />;
       case "manageUsers":
         return <ManageUsers onClose={onClose} />;
+      case "createList":
+        return <CreateList onClose={onClose} />;
       default:
-      return null;
+        return null;
     }
   };
 
@@ -22,15 +25,17 @@ const Modal = ({ onClose, formType }) => {
       <div className="modal-dialog">
         <div className="modal-content text-black">
           <div className="modal-header">
-            <button type="button" className="btn-close" onClick={onClose}></button>
+            <button
+              type="button"
+              className="btn-close"
+              onClick={onClose}
+            ></button>
           </div>
-          <div className="modal-body">
-            {renderForm()}
-          </div>
+          <div className="modal-body">{renderForm()}</div>
         </div>
       </div>
     </div>
-  );    
+  );
 };
 
 export default Modal;

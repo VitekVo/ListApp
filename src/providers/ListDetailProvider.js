@@ -1,44 +1,51 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from "react";
 
-import listData from '../data/lists.json';
+import listData from "../data/lists.json";
 
-import { UserContext } from './UserProvider';
+import { UserContext } from "./UserProvider";
+import { useParams } from "react-router-dom";
 
 export const ListDetailContext = createContext();
 
 function ListDetailProvider({ children }) {
-  const { activeList } = useContext(UserContext);
+  const { activeList, setActiveList } = useContext(UserContext);
 
-  const activeListData = listData.find(list => list.id === activeList); 
+  const { id } = useParams();
+
+  setActiveList(id);
+
+  const activeListData = listData.find((list) => list.id === activeList);
 
   const [list, setList] = useState(activeListData);
 
   const changeName = (newName) => {
-    setList(prevList => ({
+    setList((prevList) => ({
       ...prevList,
-      name: newName
-    }))
-  }
+      name: newName,
+    }));
+  };
 
   const addItem = (itemName, quantity) => {
-    setList(prevList => ({
+    setList((prevList) => ({
       ...prevList,
-      items: [...prevList.items,
-        {id: Math.random(),"name": itemName, "qty": quantity, "checked": false}]
-    }))
-  }
+      items: [
+        ...prevList.items,
+        { id: Math.random(), name: itemName, qty: quantity, checked: false },
+      ],
+    }));
+  };
 
   const addUser = (userID) => {
-    setList(prevList => ({
-      ...prevList,  
-      guests: [...prevList.guests, userID]
-    }))
-  }
+    setList((prevList) => ({
+      ...prevList,
+      guests: [...prevList.guests, userID],
+    }));
+  };
 
   const removeUser = (userID) => {
-    setList(prevList => ({
+    setList((prevList) => ({
       ...prevList,
-      guests: prevList.guests.filter(user => user !== userID)
+      guests: prevList.guests.filter((user) => user !== userID),
     }));
   };
 
@@ -47,14 +54,14 @@ function ListDetailProvider({ children }) {
       ...prevList,
       items: prevList.items.map((item) =>
         item.id === itemID ? { ...item, checked: !item.checked } : item
-      )
+      ),
     }));
   };
 
   const deleteItem = (itemID) => {
-    setList(prevList => ({
+    setList((prevList) => ({
       ...prevList,
-      items: prevList.items.filter((item) => item.id !== itemID)
+      items: prevList.items.filter((item) => item.id !== itemID),
     }));
   };
 
@@ -65,10 +72,14 @@ function ListDetailProvider({ children }) {
     addUser,
     removeUser,
     changeItem,
-    deleteItem
-};
+    deleteItem,
+  };
 
-  return <ListDetailContext.Provider value={value}>{children}</ListDetailContext.Provider>;
+  return (
+    <ListDetailContext.Provider value={value}>
+      {children}
+    </ListDetailContext.Provider>
+  );
 }
 
 export default ListDetailProvider;

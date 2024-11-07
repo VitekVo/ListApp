@@ -9,6 +9,19 @@
   border-color: black;
 }
 
+.list-overview {
+  background-color: rgb(65, 63, 63);
+  color: rgb(215, 221, 227);
+  flex-direction: column;
+  height: 100vh;
+  flex-grow: 1;
+}
+
+.grid-lists {
+  display: grid;
+  grid-template-columns: 40% 40%;
+}
+
 .list-detail {
   background-color: rgb(65, 63, 63);
   color: rgb(215, 221, 227);
@@ -29,7 +42,6 @@
   justify-content: space-between;
 }
 
-
 .filter-dropdown {
   padding: 6px;
 }
@@ -37,8 +49,8 @@
 .item-overview {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px; 
-  justify-content: flex-start; 
+  gap: 16px;
+  justify-content: flex-start;
   padding: 5px;
 }
 
@@ -52,13 +64,3 @@
   background-color: #4e4949;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-/* Background color based on checked state */
-.item[data-checked="true"] {
-  background-color: #d3ffd3; /* Light green for checked items */
-}
-
-.item[data-checked="false"] {
-  background-color: #ffd3d3; /* Light red for unchecked items */
-}
-

@@ -1,23 +1,26 @@
-import React from 'react';
-import { useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { UserContext } from '../../providers/UserProvider';
+import React, { useContext } from "react";
+import TopBarOverview from "./TopBarOverview";
+import HostLists from "./HostLists";
+import GuestLists from "./GuestLists";
+import { ListOverviewContext } from "../../providers/ListOverviewProvider";
+import { UserContext } from "../../providers/UserProvider";
 
 function ListOverview() {
-    const { setActiveList } = useContext(UserContext);
-    const navigate = useNavigate();
-    const handleClick = (listId) => {
-        setActiveList(listId);
-        navigate('/');
-      };
-    return (
-        <div>
-    <h1>This is the List Overview</h1>
-    <h2>Navigate to a list:</h2>
-    <button onClick={() => handleClick("l1")}>List 1</button>
-    <button onClick={() => handleClick("l2")}>List 2</button>
+  const { loggedInUser } = useContext(UserContext);
+  const { lists } = useContext(ListOverviewContext);
+
+  const hostLists = lists.filter((list) => list.host === loggedInUser);
+  const guestLists = lists.filter((list) => list.guests.includes(loggedInUser));
+
+  return (
+    <div className="list-overview">
+      <TopBarOverview />
+      <div className="grid-lists">
+        <HostLists hostLists={hostLists} />
+        <GuestLists guestLists={guestLists} />
+      </div>
     </div>
-    );
+  );
 }
 
 export default ListOverview;
