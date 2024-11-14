@@ -1,18 +1,63 @@
 [
-    {
-        "id": "l1",
-        "host": "u1", 
-        "name": "Fruits",
-        "items": [{"id": "i1", "name": "Apples", "qty": 2, "checked":false}, {"id": "i2", "name": "Bananas", "qty": 4, "checked":false}, {"id": "i3", "name": "Lemons", "qty": 1, "checked":false}],
-        "guests": ["u2", "u3"],
-        "archived": false
-    },
-    {
-        "id": "l2",
-        "host": "u2", 
-        "name": "Furniture",
-        "items": [{"id": "i1", "name": "Chair", "qty": 4, "checked":false}, {"id": "i2", "name": "Table", "qty": 1, "checked":false}, {"id": "i3", "name": "Drawers", "qty": 2, "checked":false}],
-        "guests": ["u1"],
-        "archived": false
-    }
+  {
+    "id": "l1",
+    "host": "u1",
+    "name": "Fruits",
+    "items": [
+      { "id": "i1", "name": "Apples", "qty": 2, "checked": false },
+      { "id": "i2", "name": "Bananas", "qty": 4, "checked": false },
+      { "id": "i3", "name": "Lemons", "qty": 1, "checked": false },
+      { "id": "i4", "name": "Oranges", "qty": 3, "checked": true }
+    ],
+    "guests": ["u2", "u3"],
+    "archived": false
+  },
+  {
+    "id": "l2",
+    "host": "u2",
+    "name": "Furniture",
+    "items": [
+      { "id": "i1", "name": "Chair", "qty": 4, "checked": false },
+      { "id": "i2", "name": "Table", "qty": 1, "checked": false },
+      { "id": "i3", "name": "Drawers", "qty": 2, "checked": false }
+    ],
+    "guests": ["u1"],
+    "archived": false
+  },
+  {
+    "id": "l3",
+    "host": "u1",
+    "name": "Grocery",
+    "items": [
+      { "id": "i4", "name": "Apples", "qty": 6, "checked": false },
+      { "id": "i5", "name": "Milk", "qty": 2, "checked": true },
+      { "id": "i6", "name": "Bread", "qty": 1, "checked": false }
+    ],
+    "guests": ["u2", "u3"],
+    "archived": true
+  },
+  {
+    "id": "l4",
+    "host": "u4",
+    "name": "Office Supplies",
+    "items": [
+      { "id": "i7", "name": "Pens", "qty": 10, "checked": false },
+      { "id": "i8", "name": "Notebooks", "qty": 5, "checked": false },
+      { "id": "i9", "name": "Stapler", "qty": 1, "checked": true }
+    ],
+    "guests": ["u1"],
+    "archived": true
+  },
+  {
+    "id": "l5",
+    "host": "u3",
+    "name": "Camping Gear",
+    "items": [
+      { "id": "i10", "name": "Tent", "qty": 1, "checked": false },
+      { "id": "i11", "name": "Sleeping Bag", "qty": 3, "checked": false },
+      { "id": "i12", "name": "Flashlight", "qty": 2, "checked": true }
+    ],
+    "guests": ["u1", "u2", "u4"],
+    "archived": false
+  }
 ]

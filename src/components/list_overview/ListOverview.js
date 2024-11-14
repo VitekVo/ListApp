@@ -13,7 +13,7 @@ function ListOverview() {
   const guestLists = lists.filter((list) => list.guests.includes(loggedInUser));
 
   return (
-    <div className="list-overview">
+    <div>
       <TopBarOverview />
       <div className="grid-lists">
         <HostLists hostLists={hostLists} />

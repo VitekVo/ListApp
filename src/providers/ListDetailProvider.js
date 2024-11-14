@@ -3,16 +3,11 @@ import { createContext, useContext, useState } from "react";
 import listData from "../data/lists.json";
 
 import { UserContext } from "./UserProvider";
-import { useParams } from "react-router-dom";
 
 export const ListDetailContext = createContext();
 
 function ListDetailProvider({ children }) {
-  const { activeList, setActiveList } = useContext(UserContext);
-
-  const { id } = useParams();
-
-  setActiveList(id);
+  const { activeList } = useContext(UserContext);
 
   const activeListData = listData.find((list) => list.id === activeList);
 
@@ -30,7 +25,12 @@ function ListDetailProvider({ children }) {
       ...prevList,
       items: [
         ...prevList.items,
-        { id: Math.random(), name: itemName, qty: quantity, checked: false },
+        {
+          id: Math.random().toString(),
+          name: itemName,
+          qty: quantity,
+          checked: false,
+        },
       ],
     }));
   };

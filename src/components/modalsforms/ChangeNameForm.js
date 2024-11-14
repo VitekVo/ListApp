@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
-import { ListDetailContext } from '../../providers/ListDetailProvider';
+import React, { useState, useContext } from "react";
+import { ListDetailContext } from "../../providers/ListDetailProvider";
 
 const ChangeName = ({ onClose }) => {
   const { changeName } = useContext(ListDetailContext);
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,12 +18,15 @@ const ChangeName = ({ onClose }) => {
         <input
           type="text"
           className="form-control"
+          maxlength="30"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
       </div>
-      <button type="submit" className="btn btn-primary">Change name</button>
+      <button type="submit" className="btn btn-primary">
+        Change name
+      </button>
     </form>
   );
 };

@@ -1,7 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import ListDetailProvider, {
-  ListDetailContext,
-} from "../../providers/ListDetailProvider";
+import { ListDetailContext } from "../../providers/ListDetailProvider";
 import { UserContext } from "../../providers/UserProvider";
 import { useNavigate } from "react-router-dom";
 
@@ -41,11 +39,9 @@ function ListDetail() {
 
   return (
     <div className="list-detail">
-      <ListDetailProvider>
-        <TopBarDetail />
-        <ControlPanel />
-        <ItemOverview />
-      </ListDetailProvider>
+      <TopBarDetail />
+      <ControlPanel />
+      <ItemOverview />
     </div>
   );
 }

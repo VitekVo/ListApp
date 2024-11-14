@@ -3,6 +3,7 @@ import ChangeName from "./ChangeNameForm";
 import AddItem from "./AddItemForm";
 import ManageUsers from "./ManageUsersForm";
 import CreateList from "./CreateListForm";
+import DeletList from "./DeleteListForm";
 
 const Modal = ({ onClose, formType }) => {
   const renderForm = () => {
@@ -15,6 +16,8 @@ const Modal = ({ onClose, formType }) => {
         return <ManageUsers onClose={onClose} />;
       case "createList":
         return <CreateList onClose={onClose} />;
+      case "deleteList":
+        return <DeletList onClose={onClose} />;
       default:
         return null;
     }
