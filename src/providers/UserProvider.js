@@ -3,7 +3,7 @@ import { createContext, useState } from 'react';
 export const UserContext = createContext();
 
 function UserProvider({ children }) {
-  const [activeList, setActiveList] = useState("l1");
+  const [activeList, setActiveList] = useState("");
   const [loggedInUser, setLoggedInUser] = useState("u1");
   const value = {
     userList: [

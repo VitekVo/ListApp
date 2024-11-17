@@ -5,7 +5,7 @@
     "name": "Fruits",
     "items": [
       { "id": "i1", "name": "Apples", "qty": 2, "checked": false },
-      { "id": "i2", "name": "Bananas", "qty": 4, "checked": false },
+      { "id": "i2", "name": "Bananas", "qty": 4, "checked": true },
       { "id": "i3", "name": "Lemons", "qty": 1, "checked": false },
       { "id": "i4", "name": "Oranges", "qty": 3, "checked": true }
     ],
@@ -29,9 +29,9 @@
     "host": "u1",
     "name": "Grocery",
     "items": [
-      { "id": "i4", "name": "Apples", "qty": 6, "checked": false },
+      { "id": "i4", "name": "Apples", "qty": 6, "checked": true },
       { "id": "i5", "name": "Milk", "qty": 2, "checked": true },
-      { "id": "i6", "name": "Bread", "qty": 1, "checked": false }
+      { "id": "i6", "name": "Bread", "qty": 1, "checked": true }
     ],
     "guests": ["u2", "u3"],
     "archived": true
@@ -41,8 +41,8 @@
     "host": "u4",
     "name": "Office Supplies",
     "items": [
-      { "id": "i7", "name": "Pens", "qty": 10, "checked": false },
-      { "id": "i8", "name": "Notebooks", "qty": 5, "checked": false },
+      { "id": "i7", "name": "Pens", "qty": 10, "checked": true },
+      { "id": "i8", "name": "Notebooks", "qty": 5, "checked": true },
       { "id": "i9", "name": "Stapler", "qty": 1, "checked": true }
     ],
     "guests": ["u1"],

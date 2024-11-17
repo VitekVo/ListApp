@@ -1,17 +1,32 @@
-import { createContext, useContext, useState } from "react";
-
+import { createContext, useContext, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import listData from "../data/lists.json";
-
 import { UserContext } from "./UserProvider";
 
 export const ListDetailContext = createContext();
 
 function ListDetailProvider({ children }) {
-  const { activeList } = useContext(UserContext);
+  const { activeList, setActiveList } = useContext(UserContext);
+  const [list, setList] = useState("");
+  const { id } = useParams();
 
-  const activeListData = listData.find((list) => list.id === activeList);
 
-  const [list, setList] = useState(activeListData);
+  useEffect(() => {
+    if (!activeList && id) {
+      setActiveList(id);
+    }
+  }, [id, activeList, setActiveList]);
+
+  useEffect(() => {
+    if (activeList) {
+      const foundList = listData.find((list) => list.id === activeList);
+      setList(foundList || null);
+    }
+  }, [activeList]);
+
+  if (!listData || !list) {
+    return <p>This URL does not exist.</p>;
+  }
 
   const changeName = (newName) => {
     setList((prevList) => ({
@@ -64,6 +79,7 @@ function ListDetailProvider({ children }) {
       items: prevList.items.filter((item) => item.id !== itemID),
     }));
   };
+
 
   const value = {
     list,

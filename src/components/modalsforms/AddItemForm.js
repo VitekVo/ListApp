@@ -15,9 +15,11 @@ const AddItem = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
-        <label className="form-label">Enter item name</label>
+        <label htmlFor="item-name" className="form-label">Enter item name</label>
         <input
           type="text"
+          id="item-name"
+          name="itemName"
           className="form-control"
           value={itemName}
           onChange={(e) => setItemName(e.target.value)}
@@ -25,9 +27,11 @@ const AddItem = ({ onClose }) => {
         />
       </div>
       <div className="mb-3">
-        <label className="form-label">Enter quantity</label>
+        <label htmlFor="item-quantity" className="form-label">Enter quantity</label>
         <input
           type="number"
+          id="item-quantity"
+          name="itemQuantity"
           className="form-control"
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}

@@ -17,6 +17,8 @@ const ManageUsers = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const userIdValid = userList.some((user) => user.id === userID);
+
     if (list.guests.includes(userID)) {
       setMessage('This user is already on the list'); 
       setShowModal(true);
@@ -24,7 +26,10 @@ const ManageUsers = () => {
     else if (!(list.guests.includes(loggedInUser)) && (loggedInUser !== list.host)) {
       navigate('/list-overview');
     }
-
+    else if (!userIdValid) {
+      setMessage('Invalid user ID');
+      setShowModal(true);
+    }
     else {
       setMessage('User added successfully');
       setShowModal(true);
@@ -50,10 +55,13 @@ const ManageUsers = () => {
       </div>
     {(loggedInUser === list.host) && 
     <div>
-        <label className="form-label">Enter user's ID to add him to this list</label>
+        <label htmlFor="invite-user" className="form-label">Enter user's ID to add him to this list</label>
         <input
           type="text"
+          id="invite-user"
+          name="inviteUser"
           className="form-control"
+          placeholder="e.g., u1"
           value={userID}
           onChange={(e) => setUserID(e.target.value)}
         />

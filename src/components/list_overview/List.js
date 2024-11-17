@@ -6,10 +6,12 @@ import Modal from "../modalsforms/Modal";
 
 function List({ list }) {
   const navigate = useNavigate();
-  const { setActiveList, loggedInUser } = useContext(UserContext);
+  const { setActiveList, loggedInUser, userList } = useContext(UserContext);
   const { archiveList } = useContext(ListOverviewContext);
   const [showModal, setShowModal] = useState(false);
   const [formType, setFormType] = useState(null);
+  const totalItems = list.items.length;
+  const checkedItems = list.items.filter((item) => item.checked).length;
 
   const handleClick = (listID) => {
     setActiveList(listID);
@@ -27,6 +29,9 @@ function List({ list }) {
     <div className="list">
       <div className="list-content" onClick={() => handleClick(list.id)}>
         <h3>{list.name}</h3>
+        <h5>Host: {userList.find((user) => user.id === list.host)?.name}
+        </h5>
+        <h5>Items checked off: {checkedItems}/{totalItems}</h5>
       </div>
       {loggedInUser === list.host && (
         <div className="list-actions">
@@ -42,6 +47,7 @@ function List({ list }) {
           <button
             onClick={(e) => {
               e.stopPropagation();
+              setActiveList(list.id);
               openModal("deleteList");
             }}
             className="btn btn-danger"

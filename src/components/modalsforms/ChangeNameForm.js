@@ -14,11 +14,13 @@ const ChangeName = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
-        <label className="form-label">Enter new name for this list</label>
+        <label htmlFor="change-name" className="form-label">Enter new name for this list</label>
         <input
           type="text"
+          id="change-name"
+          name="changeName"
           className="form-control"
-          maxlength="30"
+          maxLength="30"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required

@@ -22,7 +22,7 @@ function ControlPanel() {
         {list.name}
         {loggedInUser === list.host && (
           <button
-            className="btn btn-primary"
+            className="btn btn-light"
             style={{ padding: "5px", margin: "5px" }}
             onClick={() => openModal("changeName")}
           >
