@@ -3,6 +3,8 @@ import axios from "axios";
 
 import listData from "../data/lists.json";
 
+import { API_BASE_URL } from "../api";
+
 export const ListOverviewContext = createContext();
 
 function ListOverviewProvider({ children }) {
@@ -10,7 +12,7 @@ function ListOverviewProvider({ children }) {
 
   const createList = async (name, host, guestList) => {
     try {
-      const response = await axios.post("http://localhost:5000/api/lists", {
+      const response = await axios.post(`${API_BASE_URL}/api/lists`, {
         name,
         host,
         guests: guestList,
