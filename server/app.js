@@ -22,3 +22,7 @@ app.use("/api/lists", listRoutes);
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+
+app.get("/", (req, res) => {
+  res.send("Server is online and running!");
+});
