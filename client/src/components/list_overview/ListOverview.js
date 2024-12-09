@@ -2,15 +2,15 @@ import React, { useContext } from "react";
 import TopBarOverview from "./TopBarOverview";
 import HostLists from "./HostLists";
 import GuestLists from "./GuestLists";
-import { ListOverviewContext } from "../../providers/ListOverviewProvider";
 import { UserContext } from "../../providers/UserProvider";
 
 function ListOverview() {
-  const { loggedInUser } = useContext(UserContext);
-  const { lists } = useContext(ListOverviewContext);
+  const { loggedInUser, listList } = useContext(UserContext);
 
-  const hostLists = lists.filter((list) => list.host === loggedInUser);
-  const guestLists = lists.filter((list) => list.guests.includes(loggedInUser));
+  const hostLists = listList.filter((list) => list.host === loggedInUser);
+  const guestLists = listList.filter((list) =>
+    list.guests.includes(loggedInUser)
+  );
 
   return (
     <div>

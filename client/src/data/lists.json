@@ -1,7 +1,7 @@
 [
   {
     "id": "l1",
-    "host": "u1",
+    "host": "674ce4368dc074a2b65f85f6",
     "name": "Fruits",
     "items": [
       { "id": "i1", "name": "Apples", "qty": 2, "checked": false },

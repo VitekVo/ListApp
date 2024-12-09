@@ -7,7 +7,7 @@ import Modal from "../modalsforms/Modal";
 function List({ list }) {
   const navigate = useNavigate();
   const { setActiveList, loggedInUser, userList } = useContext(UserContext);
-  const { archiveList } = useContext(ListOverviewContext);
+  const { updateList } = useContext(ListOverviewContext);
   const [showModal, setShowModal] = useState(false);
   const [formType, setFormType] = useState(null);
   const totalItems = list.items.length;
@@ -15,7 +15,13 @@ function List({ list }) {
 
   const handleClick = (listID) => {
     setActiveList(listID);
-    navigate(`/detail/${listID}`);
+    navigate(`/detail`);
+  };
+
+  const handleArchive = (listId) => {
+    const userId = loggedInUser;
+    const state = list.archived === true ? false : true;
+    updateList(userId, listId, state);
   };
 
   const openModal = (type) => {
@@ -29,16 +35,17 @@ function List({ list }) {
     <div className="list">
       <div className="list-content" onClick={() => handleClick(list.id)}>
         <h3>{list.name}</h3>
-        <h5>Host: {userList.find((user) => user.id === list.host)?.name}
+        <h5>Host: {userList.find((user) => user.id === list.host)?.name}</h5>
+        <h5>
+          Items checked off: {checkedItems}/{totalItems}
         </h5>
-        <h5>Items checked off: {checkedItems}/{totalItems}</h5>
       </div>
       {loggedInUser === list.host && (
         <div className="list-actions">
           <button
             onClick={(e) => {
               e.stopPropagation();
-              archiveList(list.id);
+              handleArchive(list.id, list.archived);
             }}
             className="btn btn-warning"
           >

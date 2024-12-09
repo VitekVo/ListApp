@@ -23,7 +23,7 @@ function App() {
             }
           />
           <Route
-            path="/detail/:id"
+            path="/detail"
             element={
               <ListDetailProvider>
                 <ListDetail />

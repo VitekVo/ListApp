@@ -1,11 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../providers/UserProvider";
 import Modal from "../modalsforms/Modal";
 
 function TopBar() {
   const navigate = useNavigate();
-  const { userList, loggedInUser, setLoggedInUser } = useContext(UserContext);
+  const { userList, loggedInUser, setLoggedInUser, fetchUsers, fetchLists } =
+    useContext(UserContext);
 
   const [showModal, setShowModal] = useState(false);
   const [formType, setFormType] = useState(null);
@@ -16,6 +17,15 @@ function TopBar() {
   };
 
   const closeModal = () => setShowModal(false);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const handleClick = (userId) => {
+    setLoggedInUser(userId);
+    fetchLists(userId);
+  };
 
   return (
     <div className="top-bar d-flex justify-content-between">
@@ -42,7 +52,7 @@ function TopBar() {
             <li key={user.id}>
               <button
                 className="dropdown-item"
-                onClick={() => setLoggedInUser(user.id)}
+                onClick={() => handleClick(user.id)}
               >
                 {user.name}
               </button>
