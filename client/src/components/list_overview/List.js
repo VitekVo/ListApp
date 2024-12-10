@@ -18,10 +18,9 @@ function List({ list }) {
     navigate(`/detail`);
   };
 
-  const handleArchive = (listId) => {
-    const userId = loggedInUser;
+  const handleArchive = (list) => {
     const state = list.archived === true ? false : true;
-    updateList(userId, listId, state);
+    updateList(list.id, loggedInUser, null, null, state, list);
   };
 
   const openModal = (type) => {
@@ -45,7 +44,7 @@ function List({ list }) {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              handleArchive(list.id, list.archived);
+              handleArchive(list);
             }}
             className="btn btn-warning"
           >

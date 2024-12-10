@@ -19,9 +19,9 @@ function ListDetail() {
       const access =
         loggedInUser === list.host || list.guests.includes(loggedInUser);
       setUserHasAccess(access);
-      console.log("User has access");
+      // console.log("User has access");
     } else {
-      console.log("Waiting for list.host or loggedInUser...");
+      // console.log("Waiting for list.host or loggedInUser...");
     }
   }, [loggedInUser, list]);
 

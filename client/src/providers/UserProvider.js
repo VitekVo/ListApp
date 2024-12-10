@@ -1,5 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 export const UserContext = createContext();
 
 function UserProvider({ children }) {
@@ -11,11 +13,8 @@ function UserProvider({ children }) {
   const [error, setError] = useState("");
 
   const fetchUsers = async () => {
-    console.log("Fetching users");
     try {
-      const response = await fetch(
-        "http://localhost:8080/uu-listapp-maing01/22222222222222222222222222222222/user/list"
-      );
+      const response = await fetch(`${API_URL}/user/list`);
       if (!response.ok) {
         throw new Error("Failed to fetch users.");
       }
@@ -28,17 +27,13 @@ function UserProvider({ children }) {
     }
   };
 
-  const fetchLists = async () => {
-    console.log("Fetching lists");
+  const fetchLists = async (userId) => {
     try {
-      const response = await fetch(
-        `http://localhost:8080/uu-listapp-maing01/22222222222222222222222222222222/list/list`
-      );
+      const response = await fetch(`${API_URL}/list/list?userId=${userId}`);
       if (!response.ok) {
         throw new Error("Failed to fetch lists.");
       }
       const data = await response.json();
-      console.log(data.listList);
       setLists(data.listList.itemList);
     } catch (err) {
       setError(err.message);
