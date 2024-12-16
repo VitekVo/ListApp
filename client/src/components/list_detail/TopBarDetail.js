@@ -6,6 +6,10 @@ function TopBarDetail() {
   const navigate = useNavigate();
   const { userList, loggedInUser, setLoggedInUser } = useContext(UserContext);
 
+  const handleClick = (userId) => {
+    setLoggedInUser(userId);
+  };
+
   return (
     <div className="top-bar d-flex justify-content-between">
       <button className="btn btn-secondary" onClick={() => navigate("/")}>
@@ -25,7 +29,7 @@ function TopBarDetail() {
             <li key={user.id}>
               <button
                 className="dropdown-item"
-                onClick={() => setLoggedInUser(user.id)}
+                onClick={() => handleClick(user.id)}
               >
                 {user.name}
               </button>

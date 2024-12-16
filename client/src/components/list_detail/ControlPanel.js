@@ -4,7 +4,7 @@ import { UserContext } from "../../providers/UserProvider";
 import Modal from "../modalsforms/Modal";
 
 function ControlPanel() {
-  const { list } = useContext(ListDetailContext);
+  const { theList } = useContext(ListDetailContext);
   const { loggedInUser } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
   const [formType, setFormType] = useState(null);
@@ -19,8 +19,8 @@ function ControlPanel() {
   return (
     <div className="control-panel">
       <h1 className="header-one">
-        {list.name}
-        {loggedInUser === list.host && (
+        {theList.name}
+        {loggedInUser === theList.host && (
           <button
             className="btn btn-light"
             style={{ padding: "5px", margin: "5px" }}

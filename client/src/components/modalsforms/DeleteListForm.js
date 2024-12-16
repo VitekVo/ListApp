@@ -3,14 +3,14 @@ import { ListOverviewContext } from "../../providers/ListOverviewProvider";
 import { UserContext } from "../../providers/UserProvider";
 
 const DeleteList = ({ onClose }) => {
-  const { deleteList } = useContext(ListOverviewContext);
-  const { activeList, listList, loggedInUser } = useContext(UserContext);
+  const { removeList } = useContext(ListOverviewContext);
+  const { activeList } = useContext(UserContext);
+  const { lists } = useContext(ListOverviewContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const listToDelete = activeList;
-    console.log("Deleting list:", listToDelete);
-    deleteList(loggedInUser, listToDelete);
+    removeList(listToDelete);
     onClose();
   };
 
@@ -21,7 +21,7 @@ const DeleteList = ({ onClose }) => {
           <p>Are you sure you want to delete this list?</p>
           <p>
             <strong>
-              {listList.find((list) => list.id === activeList).name}
+              {lists.find((list) => list._id === activeList).name}
             </strong>
           </p>
         </div>

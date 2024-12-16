@@ -3,7 +3,7 @@ import Item from "./Item";
 import { ListDetailContext } from "../../providers/ListDetailProvider";
 
 function ItemOverview() {
-  const { list, changeItem, deleteItem } = useContext(ListDetailContext);
+  const { theList, changeItem, removeItem } = useContext(ListDetailContext);
   const [itemFilter, setItemFilter] = useState(true);
 
   const handleFilter = () => {
@@ -12,23 +12,23 @@ function ItemOverview() {
 
   const filteredItems =
     itemFilter === false
-      ? list.items
-      : list.items.filter((item) => !item.checked);
+      ? theList.items
+      : theList.items.filter((item) => !item.checked);
 
   return (
     <div>
       <div className="filter-dropdown">
         <button className="dropdown-item" onClick={() => handleFilter()}>
-        {itemFilter ? "Missing" : "All"} items:
+          {itemFilter ? "Missing" : "All"} items:
         </button>
       </div>
       <div className="item-overview">
         {filteredItems.map((item) => (
           <Item
-            key={item.id}
+            key={item._id}
             item={item}
             changeItem={changeItem}
-            deleteItem={deleteItem}
+            removeItem={removeItem}
           />
         ))}
       </div>

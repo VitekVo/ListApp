@@ -6,21 +6,22 @@ import Modal from "../modalsforms/Modal";
 
 function List({ list }) {
   const navigate = useNavigate();
-  const { setActiveList, loggedInUser, userList } = useContext(UserContext);
-  const { updateList } = useContext(ListOverviewContext);
+  const { activeList, setActiveList, loggedInUser, userList } =
+    useContext(UserContext);
+  const { archiveList } = useContext(ListOverviewContext);
   const [showModal, setShowModal] = useState(false);
   const [formType, setFormType] = useState(null);
   const totalItems = list.items.length;
   const checkedItems = list.items.filter((item) => item.checked).length;
 
-  const handleClick = (listID) => {
-    setActiveList(listID);
-    navigate(`/detail`);
+  const handleClick = (listId) => {
+    setActiveList(listId);
+    navigate(`/detail/${listId}`);
   };
 
-  const handleArchive = (list) => {
+  const handleArchive = (listId) => {
     const state = list.archived === true ? false : true;
-    updateList(list.id, loggedInUser, null, null, state, list);
+    archiveList(listId, state);
   };
 
   const openModal = (type) => {
@@ -32,7 +33,7 @@ function List({ list }) {
 
   return (
     <div className="list">
-      <div className="list-content" onClick={() => handleClick(list.id)}>
+      <div className="list-content" onClick={() => handleClick(list._id)}>
         <h3>{list.name}</h3>
         <h5>Host: {userList.find((user) => user.id === list.host)?.name}</h5>
         <h5>
@@ -44,7 +45,7 @@ function List({ list }) {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              handleArchive(list);
+              handleArchive(list._id);
             }}
             className="btn btn-warning"
           >
@@ -53,7 +54,7 @@ function List({ list }) {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              setActiveList(list.id);
+              setActiveList(list._id);
               openModal("deleteList");
             }}
             className="btn btn-danger"

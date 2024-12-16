@@ -5,7 +5,7 @@ import { UserContext } from "../../providers/UserProvider";
 import { Modal } from "react-bootstrap";
 
 const ManageUsers = () => {
-  const { list, addUser, removeUser } = useContext(ListDetailContext);
+  const { theList, manageUsers } = useContext(ListDetailContext);
   const { userList, loggedInUser } = useContext(UserContext);
   const [userID, setUserID] = useState("");
   const [message, setMessage] = useState("");
@@ -13,43 +13,40 @@ const ManageUsers = () => {
   const handleClose = () => setShowModal(false);
   const navigate = useNavigate();
 
-  const guests = userList.filter((user) => list.guests.includes(user.id));
+  const guests = userList.filter((user) => theList.guests.includes(user.id));
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // const userIdValid = userList.some((user) => user.id === userID);
+  const handleSubmit = (userID, action) => {
+    setShowModal(true);
+    manageUsers(userID, action);
+  };
 
-    // if (list.guests.includes(userID)) {
-    //   setMessage('This user is already on the list');
-    //   setShowModal(true);
-    // }
-    if (!list.guests.includes(loggedInUser) && loggedInUser !== list.host) {
-      navigate("/list-overview");
-    }
-    // else if (!userIdValid) {
-    //   setMessage("Invalid user ID");
-    //   setShowModal(true);
-    // }
-    else {
-      setMessage("User added successfully");
-      setShowModal(true);
-      addUser(userID);
-      setUserID("");
-    }
+  const handleAdd = () => {
+    setMessage("User Added successfully");
+    const action = "add";
+    handleSubmit(userID, action);
+    setUserID("");
+  };
+
+  const handleRemove = (userId) => {
+    setMessage("User removed successfully");
+    const action = "remove";
+    handleSubmit(userId, action);
+    setUserID("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div>
         <h2>Guest List</h2>
         <ul>
           {guests.map((guest) => (
             <li key={guest.id}>
               {guest.name}
-              {loggedInUser === list.host && (
+              {loggedInUser === theList.host && (
                 <button
+                  type="button"
                   className="btn btn-danger"
-                  onClick={() => removeUser(guest.id)}
+                  onClick={() => handleRemove(guest.id)}
                 >
                   Remove
                 </button>
@@ -58,7 +55,7 @@ const ManageUsers = () => {
           ))}
         </ul>
       </div>
-      {loggedInUser === list.host && (
+      {loggedInUser === theList.host && (
         <div>
           <label htmlFor="invite-user" className="form-label">
             Enter user's ID to add him to this list
@@ -68,21 +65,25 @@ const ManageUsers = () => {
             id="invite-user"
             name="inviteUser"
             className="form-control"
-            placeholder="e.g., u1"
+            placeholder="e.g., 123"
             value={userID}
             onChange={(e) => setUserID(e.target.value)}
           />
-          <button type="submit" className="btn btn-primary">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={() => handleAdd()}
+          >
             Add user
           </button>
         </div>
       )}
 
-      {loggedInUser !== list.host && (
+      {loggedInUser !== theList.host && (
         <button
-          type="submit"
+          type="button"
           className="btn btn-danger"
-          onClick={() => removeUser(loggedInUser)}
+          onClick={() => handleRemove(loggedInUser)}
         >
           Leave list
         </button>

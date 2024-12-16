@@ -3,14 +3,14 @@ import TopBarOverview from "./TopBarOverview";
 import HostLists from "./HostLists";
 import GuestLists from "./GuestLists";
 import { UserContext } from "../../providers/UserProvider";
+import { ListOverviewContext } from "../../providers/ListOverviewProvider";
 
 function ListOverview() {
-  const { loggedInUser, listList } = useContext(UserContext);
+  const { loggedInUser } = useContext(UserContext);
+  const { lists } = useContext(ListOverviewContext);
 
-  const hostLists = listList.filter((list) => list.host === loggedInUser);
-  const guestLists = listList.filter((list) =>
-    list.guests.includes(loggedInUser)
-  );
+  const hostLists = lists.filter((list) => list.host === loggedInUser);
+  const guestLists = lists.filter((list) => list.guests.includes(loggedInUser));
 
   return (
     <div>

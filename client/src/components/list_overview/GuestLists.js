@@ -20,7 +20,7 @@ function GuestLists({ guestLists }) {
         {guestLists
           .filter((list) => list.archived === archivedFilter)
           .map((list) => (
-            <List key={list.id} list={list} />
+            <List key={list._id} list={list} />
           ))}
       </div>
     </div>

@@ -1,89 +1,118 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState, useEffect, act } from "react";
 import { UserContext } from "./UserProvider";
+import { useParams } from "react-router-dom";
+
+import {
+  getList,
+  updateList,
+  manageGuests,
+  createItem,
+  updateItem,
+  deleteItem,
+} from "./FetchHelper";
+
 export const ListDetailContext = createContext();
 
 function ListDetailProvider({ children }) {
-  const { activeList, setActiveList, listList } = useContext(UserContext);
-  const [list, setList] = useState("");
-  // const { id } = useParams();
-
-  // useEffect(() => {
-  //   if (!activeList && id) {
-  //     setActiveList(id);
-  //   }
-  // }, [id, activeList, setActiveList]);
+  const { activeList, setActiveList, fetchUsers } = useContext(UserContext);
+  const [theList, setTheList] = useState("");
+  const { id } = useParams();
 
   useEffect(() => {
-    if (activeList) {
-      const foundList = listList.find((list) => list.id === activeList);
-      setList(foundList || null);
+    if (!activeList && id) {
+      setActiveList(id);
     }
-  }, [activeList, setActiveList, listList]);
+  }, [id, activeList, setActiveList]);
 
-  // if (!listData || !list) {
-  //   return <p>This URL does not exist.</p>;
-  // }
+  useEffect(() => {
+    const fetchList = async () => {
+      if (activeList) {
+        try {
+          const fetchedList = await getList(activeList);
+          setTheList(fetchedList);
+        } catch (error) {
+          console.error("Error fetching the list:", error);
+        }
+      }
+    };
 
-  const changeName = (newName) => {
-    setList((prevList) => ({
-      ...prevList,
-      name: newName,
-    }));
+    fetchList();
+  }, [activeList]);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const changeName = async (name) => {
+    const listId = activeList;
+    const updateData = { name };
+    try {
+      await updateList(listId, updateData);
+      const fetchedList = await getList(activeList);
+      setTheList(fetchedList);
+    } catch (err) {
+      console.error("Error updating list:", err);
+    }
   };
 
-  const addItem = (itemName, quantity) => {
-    setList((prevList) => ({
-      ...prevList,
-      items: [
-        ...prevList.items,
-        {
-          id: Math.random().toString(),
-          name: itemName,
-          qty: quantity,
-          checked: false,
-        },
-      ],
-    }));
+  const manageUsers = async (userId, action) => {
+    const listId = activeList;
+    const updateData = { userId, action };
+    try {
+      await manageGuests(listId, updateData);
+      const fetchedList = await getList(activeList);
+      setTheList(fetchedList);
+    } catch (err) {
+      console.error("Error updating list:", err);
+    }
   };
 
-  const addUser = (userID) => {
-    setList((prevList) => ({
-      ...prevList,
-      guests: [...prevList.guests, userID],
-    }));
+  const addItem = async (itemName, qty) => {
+    const listId = activeList;
+    const updateData = { name: itemName, quantity: qty };
+    try {
+      await createItem(listId, updateData);
+      const fetchedList = await getList(activeList);
+      setTheList(fetchedList);
+    } catch (err) {
+      console.error("Error updating list:", err);
+    }
   };
 
-  const removeUser = (userID) => {
-    setList((prevList) => ({
-      ...prevList,
-      guests: prevList.guests.filter((user) => user !== userID),
-    }));
+  const changeItem = async (itemId, state) => {
+    const listId = activeList;
+    const updateData = { itemId: itemId, checked: state };
+    try {
+      await updateItem(listId, updateData);
+      const fetchedList = await getList(activeList);
+      setTheList(fetchedList);
+    } catch (err) {
+      console.error("Error updating list:", err);
+    }
   };
 
-  const changeItem = (itemID) => {
-    setList((prevList) => ({
-      ...prevList,
-      items: prevList.items.map((item) =>
-        item.id === itemID ? { ...item, checked: !item.checked } : item
-      ),
-    }));
+  const removeItem = async (itemId) => {
+    const listId = activeList;
+    try {
+      await deleteItem(listId, itemId);
+      const fetchedList = await getList(activeList);
+      setTheList(fetchedList);
+    } catch (err) {
+      console.error("Error updating list:", err);
+    }
   };
 
-  const deleteItem = (itemID) => {
-    setList((prevList) => ({
-      ...prevList,
-      items: prevList.items.filter((item) => item.id !== itemID),
-    }));
-  };
+  if (!id || !theList) {
+    return <p>This URL does not exist.</p>;
+  }
 
   const value = {
-    list,
+    theList,
     changeName,
     addItem,
-    addUser,
-    removeUser,
+    manageUsers,
     changeItem,
-    deleteItem,
+    removeItem,
   };
 
   return (

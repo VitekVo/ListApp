@@ -3,35 +3,11 @@ import { ListOverviewContext } from "../../providers/ListOverviewProvider";
 import { UserContext } from "../../providers/UserProvider";
 
 const CreateList = ({ onClose }) => {
-  const { createList } = useContext(ListOverviewContext);
-  const { userList, loggedInUser } = useContext(UserContext);
+  const { addList } = useContext(ListOverviewContext);
+  const { loggedInUser } = useContext(UserContext);
   const [listName, setListName] = useState("");
   const [guestInput, setGuestInput] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const guestList = guestInput.split(",").map((id) => id.trim()).filter((id) => id !== "");
-  //   const isValidGuestList = guestList.every((guestId) =>
-  //     userList.some((user) => user.id === guestId)
-  // );
-  //   if (guestList.includes(loggedInUser)) {
-  //     setErrorMessage("As an owner, you can not be on the guest list.");
-  //   }
-  //   else if (!isValidGuestList) {
-  //     setErrorMessage("Some IDs are invalid.");
-  //   }
-  //   else if (isValidGuestList || (guestList.length()===0)){
-  //     createList(listName, loggedInUser, guestList);
-  //     setListName("");
-  //     setGuestInput("");
-  //     setErrorMessage("");
-  //     onClose();
-  //   }
-  //   else {
-  //     setErrorMessage("Something went wrong.")
-  //   }
-  // };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -42,7 +18,7 @@ const CreateList = ({ onClose }) => {
     if (guestList.includes(loggedInUser)) {
       setErrorMessage("As an owner, you can not be on the guest list.");
     } else {
-      createList(listName, loggedInUser, guestList);
+      addList(listName, loggedInUser, guestList);
       setListName("");
       setGuestInput("");
       setErrorMessage("");
@@ -76,7 +52,7 @@ const CreateList = ({ onClose }) => {
           id="guest-input"
           name="guestInput"
           className="form-control"
-          placeholder="e.g., u1, u2, u3,..."
+          placeholder="e.g., 123, 234, 345,..."
           value={guestInput}
           onChange={(e) => setGuestInput(e.target.value)}
         />

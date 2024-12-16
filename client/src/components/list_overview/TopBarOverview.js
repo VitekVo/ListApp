@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../providers/UserProvider";
+import { ListOverviewContext } from "../../providers/ListOverviewProvider";
+
 import Modal from "../modalsforms/Modal";
 
 function TopBar() {
   const navigate = useNavigate();
-  const { userList, loggedInUser, setLoggedInUser, fetchUsers, fetchLists } =
-    useContext(UserContext);
+  const { userList, loggedInUser, setLoggedInUser } = useContext(UserContext);
+
+  const { loadLists } = useContext(ListOverviewContext);
 
   const [showModal, setShowModal] = useState(false);
   const [formType, setFormType] = useState(null);
@@ -18,13 +21,9 @@ function TopBar() {
 
   const closeModal = () => setShowModal(false);
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
   const handleClick = (userId) => {
     setLoggedInUser(userId);
-    fetchLists(userId);
+    loadLists(userId);
   };
 
   return (
