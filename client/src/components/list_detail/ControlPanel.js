@@ -18,27 +18,40 @@ function ControlPanel() {
 
   return (
     <div className="control-panel">
-      <h1 className="header-one">
+      {/* Left-aligned: List Name and Edit Button */}
+      <div className="header-one">
         {theList.name}
         {loggedInUser === theList.host && (
           <button
             className="btn btn-light"
-            style={{ padding: "5px", margin: "5px" }}
             onClick={() => openModal("changeName")}
           >
             Edit
           </button>
         )}
-      </h1>
-      <button className="btn btn-primary" onClick={() => openModal("addItem")}>
-        Add new item
-      </button>
-      <button
-        className="btn btn-primary"
-        onClick={() => openModal("manageUsers")}
-      >
-        Invited users
-      </button>
+      </div>
+
+      {/* Center-aligned: Add New Item */}
+      <div>
+        <button
+          className="btn btn-primary"
+          onClick={() => openModal("addItem")}
+        >
+          Add new item
+        </button>
+      </div>
+
+      {/* Right-aligned: Invited Users */}
+      <div>
+        <button
+          className="btn btn-primary"
+          onClick={() => openModal("manageUsers")}
+        >
+          Invited users
+        </button>
+      </div>
+
+      {/* Modal */}
       {showModal && <Modal onClose={closeModal} formType={formType} />}
     </div>
   );

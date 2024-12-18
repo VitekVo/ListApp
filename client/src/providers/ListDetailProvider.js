@@ -24,18 +24,18 @@ function ListDetailProvider({ children }) {
     }
   }, [id, activeList, setActiveList]);
 
-  useEffect(() => {
-    const fetchList = async () => {
-      if (activeList) {
-        try {
-          const fetchedList = await getList(activeList);
-          setTheList(fetchedList);
-        } catch (error) {
-          console.error("Error fetching the list:", error);
-        }
+  const fetchList = async () => {
+    if (activeList) {
+      try {
+        const fetchedList = await getList(activeList);
+        setTheList(fetchedList);
+      } catch (error) {
+        console.error("Error fetching the list:", error);
       }
-    };
+    }
+  };
 
+  useEffect(() => {
     fetchList();
   }, [activeList]);
 
@@ -108,6 +108,7 @@ function ListDetailProvider({ children }) {
 
   const value = {
     theList,
+    fetchList,
     changeName,
     addItem,
     manageUsers,

@@ -23,7 +23,6 @@ function ListOverviewProvider({ children }) {
   };
 
   const loadLists = async (userId) => {
-    console.log("Loading lists");
     setLoading(true);
     setError("");
     try {

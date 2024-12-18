@@ -17,7 +17,7 @@ function ItemOverview() {
 
   return (
     <div>
-      <div className="filter-dropdown">
+      <div className="filter-items">
         <button className="dropdown-item" onClick={() => handleFilter()}>
           {itemFilter ? "Missing" : "All"} items:
         </button>

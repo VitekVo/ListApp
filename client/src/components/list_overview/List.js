@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../providers/UserProvider";
 import { ListOverviewContext } from "../../providers/ListOverviewProvider";
 import Modal from "../modalsforms/Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faArchive } from "@fortawesome/free-solid-svg-icons";
 
 function List({ list }) {
   const navigate = useNavigate();
@@ -47,8 +49,9 @@ function List({ list }) {
               e.stopPropagation();
               handleArchive(list._id);
             }}
-            className="btn btn-warning"
+            className="btn-archive "
           >
+            <FontAwesomeIcon icon={faArchive} />{" "}
             {list.archived === true ? "Un-archive" : "Archive"}
           </button>
           <button
@@ -57,8 +60,9 @@ function List({ list }) {
               setActiveList(list._id);
               openModal("deleteList");
             }}
-            className="btn btn-danger"
+            className="btn-delete"
           >
+            <FontAwesomeIcon icon={faTrash} />
             Delete
           </button>
         </div>

@@ -8,11 +8,12 @@ function UserProvider({ children }) {
   const [users, setUsers] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState("");
   const [activeList, setActiveList] = useState("");
+  const [language, setLanguage] = useState("en");
+  const [theme, setTheme] = useState("light");
   const [loading, setLoading] = useState("");
   const [error, setError] = useState("");
 
   const fetchUsers = async () => {
-    console.log("Fetching users");
     try {
       const response = await fetch(`${API_URL}/users/list`);
       if (!response.ok) {
@@ -36,9 +37,13 @@ function UserProvider({ children }) {
     userList,
     loggedInUser,
     activeList,
+    language,
+    theme,
     setActiveList,
     setLoggedInUser,
     fetchUsers,
+    setLanguage,
+    setTheme,
   };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }
