@@ -15,7 +15,6 @@
   background-color: #f1f1f1;
   color: #333;
   border: none;
-  border-radius: 4px;
   padding: 5px 12px;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -57,28 +56,21 @@
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
   }
-
-  .top-bar button.profile-btn::before {
-    content: "\f007";
-  }
-
-  .top-bar button.theme-btn::before {
-    content: "\f186";
-  }
-
-  .top-bar button.language-btn::before {
-    content: "\f0ac";
-  }
 }
 
 /*list overview*/
+.list-overview {
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
 .grid-lists {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
   padding: 20px;
   background-color: #f5f5f5;
-  min-height: 100vh;
+  max-height: 100vh;
 }
 
 .your-lists,
@@ -88,7 +80,7 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  max-height: 100vh;
+  max-height: 95vh;
 }
 
 .archived-icon {
@@ -186,8 +178,6 @@
 @media (max-width: 768px) {
   .grid-lists {
     grid-template-columns: 1fr;
-    gap: 10px;
-    height: auto;
   }
 
   .archived-icon {
@@ -199,8 +189,7 @@
   }
 
   .list-container {
-    height: 40vh;
-    max-height: 50vh;
+    max-height: 40vh;
   }
 
   .list {
@@ -243,36 +232,71 @@
   flex-direction: column;
   height: 100vh;
   flex-grow: 1;
-  border-style: solid;
-  border-width: 2px;
-  border-top: 0px;
-  border-color: black;
 }
 
 .control-panel {
   padding: 10px 15px;
   display: flex;
-  justify-content: space-between; /* Keep left, center, and right aligned */
-  align-items: center; /* Vertically center */
+  justify-content: space-between;
+  align-items: center;
   background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  gap: 10px; /* Add spacing between items */
-  flex-wrap: wrap; /* Ensure wrapping on smaller screens */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .header-one {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
   color: #1976d2;
   display: flex;
   align-items: center;
   gap: 10px;
-  flex: 1; /* Allow it to grow while respecting constraints */
-  min-width: 0; /* Prevent flexbox overflow issues */
-  white-space: nowrap; /* Prevent text wrapping */
-  overflow: hidden; /* Hide overflowing text */
-  text-overflow: ellipsis; /* Add ellipsis (...) for long text */
+}
+
+.top-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.chart-container {
+  width: 150px;
+  height: 150px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.filter-button-container {
+  display: flex;
+  justify-content: left;
+  margin-left: 10px;
+}
+
+.filter-items {
+  padding: 8px 12px;
+  background-color: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.filter-items:hover {
+  background-color: #145dbf;
+}
+
+.item-overview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  padding: 10px;
 }
 
 .control-panel button {
@@ -302,26 +326,6 @@
 
 .control-panel .btn-light:hover {
   background-color: #e2e6ea;
-}
-
-.filter-items {
-  margin: 5px;
-  padding: 6px;
-  background-color: #1976d2;
-  color: white;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  width: max-content;
-}
-
-.item-overview {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px; /* Reduce gap slightly */
-  justify-content: center; /* Center items for better alignment */
-  padding: 10px;
-  background-color: #e8eaf6;
 }
 
 .item {
@@ -394,18 +398,189 @@
     padding: 3px 8px;
   }
   .control-panel {
-    flex-direction: column; /* Stack items vertically */
-    align-items: stretch; /* Stretch items to full width */
+    flex-direction: column;
+    align-items: stretch;
     gap: 5px;
   }
 
+  .chart-container {
+    width: 120px;
+    height: 120px;
+    margin: 10px auto;
+  }
+
+  .control-panel .btn-light {
+    width: 40px;
+  }
+
   .header-one {
-    text-align: center; /* Center align the list name */
-    font-size: 1.2rem; /* Reduce font size */
+    justify-content: center;
+    text-align: center;
+    font-size: 1.2rem;
   }
 
   .control-panel button {
-    width: 100%; /* Buttons take full width */
+    width: 100%;
     text-align: center;
+  }
+}
+
+/* dark theme */
+html[data-theme="dark"] {
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+/* Top bar */
+html[data-theme="dark"] .top-bar {
+  background-color: #1e1e2f;
+}
+
+html[data-theme="dark"] .top-bar button {
+  background-color: #333;
+  color: #f1f1f1;
+}
+
+html[data-theme="dark"] .top-bar button:hover {
+  background-color: #555;
+}
+
+/* List overview */
+html[data-theme="dark"] .list-overview {
+  background-color: #1a1a1a;
+}
+
+html[data-theme="dark"] .grid-lists {
+  background-color: #1a1a1a;
+}
+
+html[data-theme="dark"] .your-lists,
+html[data-theme="dark"] .other-lists {
+  background-color: #2a2a3a;
+}
+
+html[data-theme="dark"] .column-header {
+  color: #d1d1d1;
+}
+
+html[data-theme="dark"] .list {
+  background-color: #2a2a2a;
+  color: #f1f1f1;
+}
+
+html[data-theme="dark"] .list-content:hover {
+  background-color: #3a3a3a;
+}
+
+/* Buttons */
+html[data-theme="dark"] .archived-button {
+  background-color: #3b5998;
+  color: #f1f1f1;
+  border: none;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+html[data-theme="dark"] .archived-button:hover {
+  background-color: #2d4373;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark theme for the filter text and icon */
+html[data-theme="dark"] .filter-text {
+  color: #d1d1d1;
+}
+
+html[data-theme="dark"] .archived-icon {
+  color: #f1f1f1;
+}
+
+html[data-theme="dark"] .btn-delete {
+  background-color: #b53b3b;
+  color: #f1f1f1;
+}
+
+html[data-theme="dark"] .btn-delete:hover {
+  background-color: #992d2d;
+}
+
+html[data-theme="dark"] .btn-archive {
+  background-color: #c9a000;
+  color: #121212;
+}
+
+html[data-theme="dark"] .btn-archive:hover {
+  background-color: #a68800;
+}
+
+/* List detail */
+html[data-theme="dark"] .list-detail {
+  background-color: #1a1a1a;
+}
+
+html[data-theme="dark"] .control-panel {
+  background-color: #2a2a2a;
+}
+
+html[data-theme="dark"] .header-one {
+  color: #66a3ff;
+}
+
+html[data-theme="dark"] .control-panel .btn-primary {
+  background-color: #3b5998;
+  color: #f1f1f1;
+}
+
+html[data-theme="dark"] .control-panel .btn-primary:hover {
+  background-color: #2d4373;
+}
+
+html[data-theme="dark"] .control-panel .btn-light {
+  background-color: #333;
+  color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+html[data-theme="dark"] .control-panel .btn-light:hover {
+  background-color: #444;
+}
+
+html[data-theme="dark"] .item-overview {
+  background-color: #1a1a1a;
+}
+
+html[data-theme="dark"] .filter-items {
+  background-color: #3b5998;
+  color: #f1f1f1;
+}
+
+html[data-theme="dark"] .item {
+  background-color: #1e1f29;
+  border: 1px solid #2c2e3b;
+  color: #e0e0e0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+html[data-theme="dark"] .delete-btn {
+  background-color: #b53b3b;
+  color: #f1f1f1;
+}
+
+html[data-theme="dark"] .delete-btn:hover {
+  background-color: #992d2d;
+}
+
+html[data-theme="dark"] .check-btn {
+  background-color: #3ba745;
+  color: #f1f1f1;
+}
+
+html[data-theme="dark"] .check-btn:hover {
+  background-color: #2d8834;
+}
+
+/* Small screen adjustments */
+@media (max-width: 768px) {
+  html[data-theme="dark"] .header-one {
+    color: #66a3ff;
   }
 }

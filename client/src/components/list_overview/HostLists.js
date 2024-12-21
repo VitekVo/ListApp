@@ -14,7 +14,10 @@ function HostLists({ hostLists }) {
     <div className="your-lists">
       <div className="column-header">
         <h1 className="lists-title">My lists</h1>
-        <button className="btn btn-primary" onClick={() => handleFilter()}>
+        <button
+          className="btn btn-primary archived-button"
+          onClick={() => handleFilter()}
+        >
           <span className="filter-text">
             {archivedFilter ? "Archived lists" : "Not archived lists"}
           </span>

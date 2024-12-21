@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-
+import { I18nextProvider } from "react-i18next";
+import i18n from "./i18n";
 import ListOverview from "./components/list_overview/ListOverview";
 import ListDetail from "./components/list_detail/ListDetail";
 

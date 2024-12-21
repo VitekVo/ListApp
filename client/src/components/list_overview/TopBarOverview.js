@@ -25,9 +25,7 @@ function TopBar() {
       <button
         className="btn btn-secondary"
         onClick={() => openModal("createList")}
-      >
-        Create new list
-      </button>
+      ></button>
       <DropdownButton />
       {showModal && <Modal onClose={closeModal} formType={formType} />}
     </div>

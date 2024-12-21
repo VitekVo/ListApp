@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -12,6 +12,12 @@ function UserProvider({ children }) {
   const [theme, setTheme] = useState("light");
   const [loading, setLoading] = useState("");
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    const htmlElement = document.getElementsByTagName("html");
+    htmlElement[0].setAttribute("data-theme", theme);
+    htmlElement[0].setAttribute("data-bs-theme", theme);
+  }, [theme]);
 
   const fetchUsers = async () => {
     try {

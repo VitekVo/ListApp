@@ -18,7 +18,7 @@ function List({ list }) {
 
   const handleClick = (listId) => {
     setActiveList(listId);
-    navigate(`/detail/${listId}`);
+    navigate("/detail/${listId}");
   };
 
   const handleArchive = (listId) => {

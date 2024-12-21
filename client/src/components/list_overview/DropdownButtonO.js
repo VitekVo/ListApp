@@ -41,6 +41,22 @@ const DropdownButton = () => {
       </button>
 
       <ul className="dropdown-menu">
+        <li>
+          <button className="dropdown-item" onClick={handleChangeLanguage}>
+            <FontAwesomeIcon icon={faGlobe} style={{ marginRight: "5px" }} />
+            {language === "en" ? "Czech" : "English"}
+          </button>
+        </li>
+
+        <li>
+          <button className="dropdown-item" onClick={handleChangeTheme}>
+            <FontAwesomeIcon
+              icon={theme === "light" ? faMoon : faSun}
+              style={{ marginRight: "5px" }}
+            />
+            {theme === "light" ? "Dark Theme" : "Light Theme"}
+          </button>
+        </li>
         <li className="dropdown-submenu position-relative">
           <button
             className="dropdown-item dropdown-toggle"
@@ -64,23 +80,6 @@ const DropdownButton = () => {
               </li>
             ))}
           </ul>
-        </li>
-
-        <li>
-          <button className="dropdown-item" onClick={handleChangeLanguage}>
-            <FontAwesomeIcon icon={faGlobe} style={{ marginRight: "5px" }} />
-            {language === "en" ? "Czech" : "English"}
-          </button>
-        </li>
-
-        <li>
-          <button className="dropdown-item" onClick={handleChangeTheme}>
-            <FontAwesomeIcon
-              icon={theme === "light" ? faMoon : faSun}
-              style={{ marginRight: "5px" }}
-            />
-            {theme === "light" ? "Dark Theme" : "Light Theme"}
-          </button>
         </li>
       </ul>
     </div>

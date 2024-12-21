@@ -2,6 +2,8 @@ import React, { useState, useContext } from "react";
 import { ListDetailContext } from "../../providers/ListDetailProvider";
 import { UserContext } from "../../providers/UserProvider";
 import Modal from "../modalsforms/Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
 
 function ControlPanel() {
   const { theList } = useContext(ListDetailContext);
@@ -26,7 +28,7 @@ function ControlPanel() {
             className="btn btn-light"
             onClick={() => openModal("changeName")}
           >
-            Edit
+            <FontAwesomeIcon icon={faPen} />
           </button>
         )}
       </div>
