@@ -3,10 +3,12 @@ import Item from "./Item";
 import { ListDetailContext } from "../../providers/ListDetailProvider";
 import { Pie } from "react-chartjs-2";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { useTranslation } from "react-i18next";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 function ItemOverview() {
+  const { t } = useTranslation();
   const { theList, changeItem, removeItem } = useContext(ListDetailContext);
   const [itemFilter, setItemFilter] = useState(true);
 
@@ -57,18 +59,21 @@ function ItemOverview() {
   return (
     <div>
       <div className="top-section">
-        <div className="left-section"></div>
+        <div className="left-section">
+          <div className="filter-button-container">
+            <button
+              className="btn-primary filter-items"
+              onClick={() => handleFilter()}
+            >
+              {itemFilter
+                ? t("listDetail.itemsFilterTrueButton")
+                : t("listDetail.itemsFilterFalseButton")}
+            </button>
+          </div>
+        </div>
         <div className="chart-container">
           <Pie data={pieData} options={pieOptions} />
         </div>
-      </div>
-      <div className="filter-button-container">
-        <button
-          className="btn-primary filter-items"
-          onClick={() => handleFilter()}
-        >
-          {itemFilter ? "Missing" : "All"} items:
-        </button>
       </div>
       <div className="item-overview">
         {filteredItems.map((item) => (

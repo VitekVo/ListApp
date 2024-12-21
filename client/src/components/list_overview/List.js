@@ -5,8 +5,10 @@ import { ListOverviewContext } from "../../providers/ListOverviewProvider";
 import Modal from "../modalsforms/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faArchive } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 function List({ list }) {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { activeList, setActiveList, loggedInUser, userList } =
     useContext(UserContext);
@@ -37,9 +39,12 @@ function List({ list }) {
     <div className="list">
       <div className="list-content" onClick={() => handleClick(list._id)}>
         <h3>{list.name}</h3>
-        <h5>Host: {userList.find((user) => user.id === list.host)?.name}</h5>
         <h5>
-          Items checked off: {checkedItems}/{totalItems}
+          {t("singleList.host")}:{" "}
+          {userList.find((user) => user.id === list.host)?.name}
+        </h5>
+        <h5>
+          {t("singleList.itemsChecked")}: {checkedItems}/{totalItems}
         </h5>
       </div>
       {loggedInUser === list.host && (
@@ -52,7 +57,9 @@ function List({ list }) {
             className="btn-archive "
           >
             <FontAwesomeIcon icon={faArchive} />{" "}
-            {list.archived === true ? "Un-archive" : "Archive"}
+            {list.archived === true
+              ? t("singleList.unarchiveButton")
+              : t("singleList.archiveButton")}
           </button>
           <button
             onClick={(e) => {
@@ -63,7 +70,7 @@ function List({ list }) {
             className="btn-delete"
           >
             <FontAwesomeIcon icon={faTrash} />
-            Delete
+            {t("singleList.deleteButton")}
           </button>
         </div>
       )}

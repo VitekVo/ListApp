@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { ListDetailContext } from "../../providers/ListDetailProvider";
+import { useTranslation } from "react-i18next";
 
 const AddItem = ({ onClose }) => {
+  const { t } = useTranslation();
   const { addItem } = useContext(ListDetailContext);
   const [itemName, setItemName] = useState("");
   const [qty, setQty] = useState(1);
@@ -16,7 +18,7 @@ const AddItem = ({ onClose }) => {
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
         <label htmlFor="item-name" className="form-label">
-          Enter item name
+          {t("modalsForms.addItemModal.enterItemName")}
         </label>
         <input
           type="text"
@@ -30,7 +32,7 @@ const AddItem = ({ onClose }) => {
       </div>
       <div className="mb-3">
         <label htmlFor="item-quantity" className="form-label">
-          Enter quantity
+          {t("modalsForms.addItemModal.enterQuantity")}
         </label>
         <input
           type="number"
@@ -44,7 +46,7 @@ const AddItem = ({ onClose }) => {
         />
       </div>
       <button type="submit" className="btn btn-primary">
-        Add Item
+        {t("modalsForms.addItemModal.addItemButton")}
       </button>
     </form>
   );

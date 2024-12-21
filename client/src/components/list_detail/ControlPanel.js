@@ -4,8 +4,10 @@ import { UserContext } from "../../providers/UserProvider";
 import Modal from "../modalsforms/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 function ControlPanel() {
+  const { t } = useTranslation();
   const { theList } = useContext(ListDetailContext);
   const { loggedInUser } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
@@ -20,7 +22,6 @@ function ControlPanel() {
 
   return (
     <div className="control-panel">
-      {/* Left-aligned: List Name and Edit Button */}
       <div className="header-one">
         {theList.name}
         {loggedInUser === theList.host && (
@@ -32,28 +33,22 @@ function ControlPanel() {
           </button>
         )}
       </div>
-
-      {/* Center-aligned: Add New Item */}
       <div>
         <button
           className="btn btn-primary"
           onClick={() => openModal("addItem")}
         >
-          Add new item
+          {t("listDetail.addItemButton")}
         </button>
       </div>
-
-      {/* Right-aligned: Invited Users */}
       <div>
         <button
           className="btn btn-primary"
           onClick={() => openModal("manageUsers")}
         >
-          Invited users
+          {t("listDetail.invitedUsersButton")}
         </button>
       </div>
-
-      {/* Modal */}
       {showModal && <Modal onClose={closeModal} formType={formType} />}
     </div>
   );

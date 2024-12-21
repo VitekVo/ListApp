@@ -9,9 +9,17 @@ import {
   faMoon,
   faSun,
 } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
+
+const lngs = {
+  en: { nativeName: "English" },
+  cs: { nativeName: "Čeština" },
+};
 
 const DropdownButton = () => {
-  const { userList, setLoggedInUser, language, setLanguage, theme, setTheme } =
+  const { t, i18n } = useTranslation();
+
+  const { userList, setLoggedInUser, theme, setTheme } =
     useContext(UserContext);
   const { loadLists } = useContext(ListOverviewContext);
 
@@ -20,13 +28,14 @@ const DropdownButton = () => {
     document.body.classList.toggle("dark-theme");
   };
 
-  const handleChangeLanguage = () => {
-    setLanguage(language === "en" ? "cs" : "en");
-  };
-
   const handleChangeUser = (userId) => {
     setLoggedInUser(userId);
     loadLists(userId);
+  };
+
+  const toggleLanguage = () => {
+    const newLanguage = i18n.resolvedLanguage === "en" ? "cs" : "en";
+    i18n.changeLanguage(newLanguage);
   };
 
   return (
@@ -42,9 +51,9 @@ const DropdownButton = () => {
 
       <ul className="dropdown-menu">
         <li>
-          <button className="dropdown-item" onClick={handleChangeLanguage}>
-            <FontAwesomeIcon icon={faGlobe} style={{ marginRight: "5px" }} />
-            {language === "en" ? "Czech" : "English"}
+          <button className="dropdown-item" onClick={toggleLanguage}>
+            <FontAwesomeIcon icon={faGlobe} style={{ marginRight: "5px" }} />(
+            {lngs[i18n.resolvedLanguage === "en" ? "cs" : "en"].nativeName})
           </button>
         </li>
 
@@ -54,7 +63,7 @@ const DropdownButton = () => {
               icon={theme === "light" ? faMoon : faSun}
               style={{ marginRight: "5px" }}
             />
-            {theme === "light" ? "Dark Theme" : "Light Theme"}
+            {theme === "light" ? t("topBar.themeDark") : t("topBar.themeLight")}
           </button>
         </li>
         <li className="dropdown-submenu position-relative">
@@ -64,7 +73,7 @@ const DropdownButton = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <FontAwesomeIcon icon={faUser} style={{ marginRight: "5px" }} />
-            Change Profile
+            {t("topBar.changeProfile")}
           </button>
           <ul className="dropdown-menu">
             {userList.map((user) => (

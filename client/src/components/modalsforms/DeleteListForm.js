@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { ListOverviewContext } from "../../providers/ListOverviewProvider";
 import { UserContext } from "../../providers/UserProvider";
+import { useTranslation } from "react-i18next";
 
 const DeleteList = ({ onClose }) => {
+  const { t } = useTranslation();
   const { removeList } = useContext(ListOverviewContext);
   const { activeList } = useContext(UserContext);
   const { lists } = useContext(ListOverviewContext);
@@ -18,7 +20,7 @@ const DeleteList = ({ onClose }) => {
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
         <div className="form-label">
-          <p>Are you sure you want to delete this list?</p>
+          <p>{t("modalsForms.deleteListModal.youSure")}</p>
           <p>
             <strong>
               {lists.find((list) => list._id === activeList).name}
@@ -27,10 +29,10 @@ const DeleteList = ({ onClose }) => {
         </div>
       </div>
       <button type="submit" className="btn btn-danger">
-        Delete list
+        {t("modalsForms.deleteListModal.confirmDelete")}
       </button>
       <button type="button" className="btn btn-secondary" onClick={onClose}>
-        Cancel
+        {t("modalsForms.deleteListModal.cancelDelete")}
       </button>
     </form>
   );

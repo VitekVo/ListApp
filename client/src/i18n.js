@@ -2,34 +2,138 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 
-const resources = {
-  en: {
-    translation: {
-      topBar: {
-        createListButton: "Create new list",
-      },
-    },
-  },
-  cs: {
-    translation: {
-      topBar: {
-        createListButton: "Vytvořit nový seznam",
-      },
-    },
-  },
-};
-
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources,
     fallbackLng: "en",
     interpolation: {
       escapeValue: false,
     },
+    resources: {
+      en: {
+        translation: {
+          topBar: {
+            appName: "MrLister",
+            createListButton: "Create new list",
+            themeDark: "Dark theme",
+            themeLight: "Light theme",
+            changeProfile: "Change profile",
+          },
+          listOverview: {
+            myLists: "My lists",
+            sharedLists: "Shared with me",
+            archivedButtonTrue: "Archived lists",
+            archivedButtonFalse: "Not archived lists",
+          },
+          singleList: {
+            host: "Host",
+            itemsChecked: "Items checked",
+            archiveButton: "Archive",
+            unarchiveButton: "Un-archive",
+            deleteButton: "Delete",
+          },
+          listDetail: {
+            addItemButton: "Add new item",
+            invitedUsersButton: "Invited users",
+            itemsFilterTrueButton: "Missing items",
+            itemsFilterFalseButton: "All items",
+            itemQuantity: "Qty",
+          },
+          modalsForms: {
+            createListModal: {
+              enterName: "Enter name for your list",
+              enterIDs: "Enter IDs of users you want to invite",
+              createButton: "Create list",
+            },
+            deleteListModal: {
+              youSure: "Are you sure you want to delete this list?",
+              confirmDelete: "Delete list",
+              cancelDelete: "Cancel",
+            },
+            changeNameModal: {
+              enterNewName: "Enter new name for this list",
+              confirmChange: "Change name",
+            },
+            addItemModal: {
+              enterItemName: "Enter item name",
+              enterQuantity: "Enter quantity",
+              addItemButton: "Add item",
+            },
+            manageUsersModal: {
+              guestList: "Guest list",
+              enterUserId: "Enter user's ID to add them to this list",
+              addUserButton: "Add user",
+              removeUserButton: "Remove user",
+              leaveListButton: "Leave list",
+              userAddedMessage: "User added successfully",
+              userRemovedMessage: "User removed successfully",
+            },
+          },
+        },
+      },
+      cs: {
+        translation: {
+          topBar: {
+            appName: "PanSeznam",
+            createListButton: "Vytvořit nový seznam",
+            themeDark: "Tmavý režim",
+            themeLight: "Světlý režim",
+            changeProfile: "Změnit profil",
+          },
+          listOverview: {
+            myLists: "Moje seznamy",
+            sharedLists: "Sdílené se mnou",
+            archivedButtonTrue: "Archivované seznamy",
+            archivedButtonFalse: "Nearchivované seznamy",
+          },
+          singleList: {
+            host: "Majitel",
+            itemsChecked: "Odškrtnuté položky",
+            archiveButton: "Archivovat",
+            unarchiveButton: "Od-archivovat",
+            deleteButton: "Smazat",
+          },
+          listDetail: {
+            addItemButton: "Přidat novou položku",
+            invitedUsersButton: "Pozvaní uživatelé",
+            itemsFilterTrueButton: "Chybějící položky",
+            itemsFilterFalseButton: "Všechny položky",
+            itemQuantity: "Počet",
+          },
+          modalsForms: {
+            createListModal: {
+              enterName: "Zadejte jméno pro seznam",
+              enterIds: "Zadejte ID uživatelů, které chcete pozvat",
+              createButton: "Vytvořit seznam",
+            },
+            deleteListModal: {
+              youSure: "Opravdu chcete samzat tento seznam?",
+              confirmDelete: "Smazat seznam",
+              cancelDelete: "Zrušit",
+            },
+            changeNameModal: {
+              enterNewName: "Zadejte nové jméno pro tento seznam",
+              confirmChange: "Změnit jméno",
+            },
+            addItemModal: {
+              enterItemName: "Zadejte název položky",
+              enterQuantity: "Zadejte množství",
+              addItemButton: "Přidat položku",
+            },
+            manageUsersModal: {
+              guestList: "Seznam hostů",
+              enterUserId: "Pro přidání uživatele, zadejte jeho ID",
+              addUserButton: "Přidat uživatele",
+              removeUserButton: "Odstranit uživatele",
+              leaveListButton: "Opustit seznam",
+              userAddedMessage: "Uživatel přidán úspěšně",
+              userRemovedMessage: "Uživatel odebrán úspěšně",
+            },
+          },
+        },
+      },
+    },
   });
-
-console.log("i18n initialized with language:", i18n.language);
 
 export default i18n;

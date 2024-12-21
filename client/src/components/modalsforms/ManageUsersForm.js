@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { ListDetailContext } from "../../providers/ListDetailProvider";
 import { UserContext } from "../../providers/UserProvider";
 import { Modal } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 const ManageUsers = () => {
+  const { t } = useTranslation();
   const { theList, manageUsers } = useContext(ListDetailContext);
   const { userList, loggedInUser } = useContext(UserContext);
   const [userID, setUserID] = useState("");
@@ -21,14 +23,14 @@ const ManageUsers = () => {
   };
 
   const handleAdd = () => {
-    setMessage("User Added successfully");
+    setMessage(t("modalsForms.manageUsersModal.userAddedMessage"));
     const action = "add";
     handleSubmit(userID, action);
     setUserID("");
   };
 
   const handleRemove = (userId) => {
-    setMessage("User removed successfully");
+    setMessage(t("modalsForms.manageUsersModal.userRemovedMessage"));
     const action = "remove";
     handleSubmit(userId, action);
     setUserID("");
@@ -37,7 +39,7 @@ const ManageUsers = () => {
   return (
     <form>
       <div>
-        <h2>Guest List</h2>
+        <h2>{t("modalsForms.manageUsersModal.guestList")}</h2>
         <ul>
           {guests.map((guest) => (
             <li key={guest.id}>
@@ -48,7 +50,7 @@ const ManageUsers = () => {
                   className="btn btn-danger"
                   onClick={() => handleRemove(guest.id)}
                 >
-                  Remove
+                  {t("modalsForms.manageUsersModal.removeUserButton")}
                 </button>
               )}
             </li>
@@ -58,7 +60,7 @@ const ManageUsers = () => {
       {loggedInUser === theList.host && (
         <div>
           <label htmlFor="invite-user" className="form-label">
-            Enter user's ID to add him to this list
+            {t("modalsForms.manageUsersModal.enterUserId")}
           </label>
           <input
             type="text"
@@ -74,7 +76,7 @@ const ManageUsers = () => {
             className="btn btn-primary"
             onClick={() => handleAdd()}
           >
-            Add user
+            {t("modalsForms.manageUsersModal.addUserButton")}
           </button>
         </div>
       )}
@@ -85,7 +87,7 @@ const ManageUsers = () => {
           className="btn btn-danger"
           onClick={() => handleRemove(loggedInUser)}
         >
-          Leave list
+          {t("modalsForms.manageUsersModal.leaveListButton")}
         </button>
       )}
       <Modal show={showModal} onHide={handleClose}>

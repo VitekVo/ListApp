@@ -1,7 +1,9 @@
 import React, { useState, useContext } from "react";
 import { ListDetailContext } from "../../providers/ListDetailProvider";
+import { useTranslation } from "react-i18next";
 
 const ChangeName = ({ onClose }) => {
+  const { t } = useTranslation();
   const { changeName } = useContext(ListDetailContext);
   const [name, setName] = useState("");
 
@@ -14,7 +16,9 @@ const ChangeName = ({ onClose }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="mb-3">
-        <label htmlFor="change-name" className="form-label">Enter new name for this list</label>
+        <label htmlFor="change-name" className="form-label">
+          {t("modalsForms.changeNameModal.enterNewName")}
+        </label>
         <input
           type="text"
           id="change-name"
@@ -27,7 +31,7 @@ const ChangeName = ({ onClose }) => {
         />
       </div>
       <button type="submit" className="btn btn-primary">
-        Change name
+        {t("modalsForms.changeNameModal.confirmChange")}
       </button>
     </form>
   );

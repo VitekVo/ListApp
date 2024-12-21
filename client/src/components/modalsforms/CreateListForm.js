@@ -1,8 +1,10 @@
 import React, { useState, useContext } from "react";
 import { ListOverviewContext } from "../../providers/ListOverviewProvider";
 import { UserContext } from "../../providers/UserProvider";
+import { useTranslation } from "react-i18next";
 
 const CreateList = ({ onClose }) => {
+  const { t } = useTranslation();
   const { addList } = useContext(ListOverviewContext);
   const { loggedInUser } = useContext(UserContext);
   const [listName, setListName] = useState("");
@@ -30,7 +32,7 @@ const CreateList = ({ onClose }) => {
     <form onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="list-name" className="formGroupName">
-          Enter name for your list
+          {t("modalsForms.createListModal.enterName")}
         </label>
         <input
           type="text"
@@ -45,7 +47,7 @@ const CreateList = ({ onClose }) => {
 
       <div className="form-group">
         <label htmlFor="guest-input" className="formGroupID">
-          Enter IDs of users you want to invite
+          {t("modalsForms.createListModal.enterIds")}{" "}
         </label>
         <input
           type="text"
@@ -61,7 +63,7 @@ const CreateList = ({ onClose }) => {
       {errorMessage && <p className="text-danger">{errorMessage}</p>}
 
       <button type="submit" className="btn btn-primary">
-        Create list
+        {t("modalsForms.createListModal.createButton")}{" "}
       </button>
     </form>
   );
