@@ -10,8 +10,7 @@ import { useTranslation } from "react-i18next";
 function List({ list }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const { activeList, setActiveList, loggedInUser, userList } =
-    useContext(UserContext);
+  const { setActiveList, loggedInUser, userList } = useContext(UserContext);
   const { archiveList } = useContext(ListOverviewContext);
   const [showModal, setShowModal] = useState(false);
   const [formType, setFormType] = useState(null);
@@ -20,7 +19,7 @@ function List({ list }) {
 
   const handleClick = (listId) => {
     setActiveList(listId);
-    navigate("/detail/${listId}");
+    navigate(`/detail/${listId}`);
   };
 
   const handleArchive = (listId) => {

@@ -43,7 +43,7 @@ i18n
           modalsForms: {
             createListModal: {
               enterName: "Enter name for your list",
-              enterIDs: "Enter IDs of users you want to invite",
+              enterIds: "Enter IDs of users you want to invite",
               createButton: "Create list",
             },
             deleteListModal: {

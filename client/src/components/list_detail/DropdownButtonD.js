@@ -19,7 +19,7 @@ const lngs = {
 const DropdownButton = () => {
   const { t, i18n } = useTranslation();
 
-  const { userList, setLoggedInUser, language, setLanguage, theme, setTheme } =
+  const { userList, setLoggedInUser, theme, setTheme } =
     useContext(UserContext);
   const { fetchList } = useContext(ListDetailContext);
   const handleChangeTheme = () => {

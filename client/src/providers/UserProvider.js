@@ -8,7 +8,6 @@ function UserProvider({ children }) {
   const [users, setUsers] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState("");
   const [activeList, setActiveList] = useState("");
-  const [language, setLanguage] = useState("en");
   const [theme, setTheme] = useState("light");
   const [loading, setLoading] = useState("");
   const [error, setError] = useState("");
@@ -43,13 +42,15 @@ function UserProvider({ children }) {
     userList,
     loggedInUser,
     activeList,
-    language,
     theme,
+    loading,
+    error,
     setActiveList,
     setLoggedInUser,
     fetchUsers,
-    setLanguage,
     setTheme,
+    setLoading,
+    setError,
   };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }

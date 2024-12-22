@@ -47,7 +47,7 @@ const CreateList = ({ onClose }) => {
 
       <div className="form-group">
         <label htmlFor="guest-input" className="formGroupID">
-          {t("modalsForms.createListModal.enterIds")}{" "}
+          {t("modalsForms.createListModal.enterIds")}
         </label>
         <input
           type="text"

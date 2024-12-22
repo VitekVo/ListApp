@@ -7,10 +7,9 @@ import { createList, fetchLists, updateList, deleteList } from "./FetchHelper";
 export const ListOverviewContext = createContext();
 
 function ListOverviewProvider({ children }) {
-  const { loggedInUser, fetchUsers } = useContext(UserContext);
+  const { loggedInUser, fetchUsers, setLoading, setError } =
+    useContext(UserContext);
   const [lists, setLists] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
   const addList = async (listName, loggedInUser, guestList) => {
     const newList = { name: listName, host: loggedInUser, guests: guestList };

@@ -1,4 +1,4 @@
-import React, { useContext, useState, PureComponent } from "react";
+import React, { useContext, useState } from "react";
 import Item from "./Item";
 import { ListDetailContext } from "../../providers/ListDetailProvider";
 import { Pie } from "react-chartjs-2";

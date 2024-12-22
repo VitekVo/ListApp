@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect, act } from "react";
+import { createContext, useContext, useState, useEffect, React } from "react";
 import { UserContext } from "./UserProvider";
 import { useParams } from "react-router-dom";
 

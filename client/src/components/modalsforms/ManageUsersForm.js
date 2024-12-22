@@ -1,5 +1,4 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { ListDetailContext } from "../../providers/ListDetailProvider";
 import { UserContext } from "../../providers/UserProvider";
 import { Modal } from "react-bootstrap";
@@ -13,7 +12,6 @@ const ManageUsers = () => {
   const [message, setMessage] = useState("");
   const [showModal, setShowModal] = useState(false);
   const handleClose = () => setShowModal(false);
-  const navigate = useNavigate();
 
   const guests = userList.filter((user) => theList.guests.includes(user.id));
 
@@ -39,15 +37,17 @@ const ManageUsers = () => {
   return (
     <form>
       <div>
-        <h2>{t("modalsForms.manageUsersModal.guestList")}</h2>
-        <ul>
+        <h2 className="gueslist-header">
+          {t("modalsForms.manageUsersModal.guestList")}
+        </h2>
+        <ul className="guest-list">
           {guests.map((guest) => (
-            <li key={guest.id}>
-              {guest.name}
+            <li key={guest.id} className="guest-list-item">
+              <span className="guest-name">{guest.name}</span>
               {loggedInUser === theList.host && (
                 <button
                   type="button"
-                  className="btn btn-danger"
+                  className="btn btn-danger remove-user-btn"
                   onClick={() => handleRemove(guest.id)}
                 >
                   {t("modalsForms.manageUsersModal.removeUserButton")}
@@ -90,7 +90,7 @@ const ManageUsers = () => {
           {t("modalsForms.manageUsersModal.leaveListButton")}
         </button>
       )}
-      <Modal show={showModal} onHide={handleClose}>
+      {/* <Modal show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title></Modal.Title>
         </Modal.Header>
@@ -100,7 +100,7 @@ const ManageUsers = () => {
             Ok
           </button>
         </Modal.Footer>
-      </Modal>
+      </Modal> */}
     </form>
   );
 };
