@@ -24,6 +24,21 @@
   background-color: #b4adad;
 }
 
+.top-left {
+  display: flex;
+  align-items: left;
+}
+.top-center {
+  display: flex;
+  align-items: center;
+}
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: white;
+}
+
 .dropdown-submenu {
   position: relative;
 }
@@ -478,7 +493,7 @@
     font-size: 1.2rem;
   }
 
-  .control-panel button {
+  .control-panel .btn-primary {
     width: 100%;
     text-align: center;
   }

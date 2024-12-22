@@ -7,10 +7,12 @@ export const UserContext = createContext();
 function UserProvider({ children }) {
   const [users, setUsers] = useState([]);
   const [loggedInUser, setLoggedInUser] = useState("");
+  const [loggedUserName, setLoggedUserName] = useState("");
   const [activeList, setActiveList] = useState("");
   const [theme, setTheme] = useState("light");
   const [loading, setLoading] = useState("");
   const [error, setError] = useState("");
+  const [hasSeenModal, setHasSeenModal] = useState(false);
 
   useEffect(() => {
     const htmlElement = document.getElementsByTagName("html");
@@ -38,19 +40,29 @@ function UserProvider({ children }) {
     name: user.name,
   }));
 
+  useEffect(() => {
+    if (loggedInUser) {
+      const user = userList.find((u) => u.id === loggedInUser);
+      setLoggedUserName(user.name);
+    }
+  }, [loggedInUser]);
+
   const value = {
     userList,
     loggedInUser,
+    loggedUserName,
     activeList,
     theme,
     loading,
     error,
+    hasSeenModal,
     setActiveList,
     setLoggedInUser,
     fetchUsers,
     setTheme,
     setLoading,
     setError,
+    setHasSeenModal,
   };
   return <UserContext.Provider value={value}>{children}</UserContext.Provider>;
 }

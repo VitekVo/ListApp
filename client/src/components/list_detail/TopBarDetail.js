@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import DropdownButtonD from "../list_detail/DropdownButtonD";
+import DropdownButton from "../list_detail/DropdownButtonD";
 import { useTranslation } from "react-i18next";
+import { UserContext } from "../../providers/UserProvider";
 
 function TopBarDetail() {
   const { t } = useTranslation();
+  const { loggedUserName } = useContext(UserContext);
 
   const navigate = useNavigate();
 
@@ -13,7 +15,10 @@ function TopBarDetail() {
       <button className="btn btn-secondary" onClick={() => navigate("/")}>
         {t("topBar.appName")}
       </button>
-      <DropdownButtonD />
+      <div className="top-right">
+        {loggedUserName}
+        <DropdownButton />
+      </div>
     </div>
   );
 }

@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
 import DropdownButton from "./DropdownButtonO";
 import Modal from "../modalsforms/Modal";
+import { UserContext } from "../../providers/UserProvider";
 
 function TopBar() {
   const navigate = useNavigate();
   const { t } = useTranslation();
-
+  const { loggedInUser, loggedUserName } = useContext(UserContext);
   const [showModal, setShowModal] = useState(false);
   const [formType, setFormType] = useState(null);
 
@@ -20,17 +21,26 @@ function TopBar() {
   const closeModal = () => setShowModal(false);
 
   return (
-    <div className="top-bar d-flex justify-content-between">
-      <button className="btn btn-secondary" onClick={() => navigate("/")}>
+    <div className="top-bar">
+      <button
+        className="btn btn-secondary top-left"
+        onClick={() => navigate("/")}
+      >
         {t("topBar.appName")}
       </button>
-      <button
-        className="btn btn-secondary"
-        onClick={() => openModal("createList")}
-      >
-        {t("topBar.createListButton")}
-      </button>
-      <DropdownButton />
+      {loggedInUser && (
+        <button
+          className="btn btn-secondary top-center"
+          onClick={() => openModal("createList")}
+        >
+          {t("topBar.createListButton")}
+        </button>
+      )}
+      <div className="top-right">
+        {loggedUserName}
+        {!loggedUserName && t("topBar.selectProfile")}
+        <DropdownButton />
+      </div>
       {showModal && <Modal onClose={closeModal} formType={formType} />}
     </div>
   );

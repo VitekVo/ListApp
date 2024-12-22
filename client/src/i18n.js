@@ -19,6 +19,7 @@ i18n
             themeDark: "Dark theme",
             themeLight: "Light theme",
             changeProfile: "Change profile",
+            selectProfile: "Select profile ->",
           },
           listOverview: {
             myLists: "My lists",
@@ -43,7 +44,7 @@ i18n
           modalsForms: {
             createListModal: {
               enterName: "Enter name for your list",
-              enterIds: "Enter IDs of users you want to invite",
+              enterIds: "You can enter IDs of users you want to invite",
               createButton: "Create list",
             },
             deleteListModal: {
@@ -67,7 +68,12 @@ i18n
               removeUserButton: "Remove user",
               leaveListButton: "Leave list",
               userAddedMessage: "User added successfully",
+              userAddedFailedMessage: "Failed to add user. Invalid ID.",
               userRemovedMessage: "User removed successfully",
+            },
+            announceModal: {
+              message:
+                "This app is hosted on Render and may take a moment to respond after inactivity.",
             },
           },
         },
@@ -80,6 +86,7 @@ i18n
             themeDark: "Tmavý režim",
             themeLight: "Světlý režim",
             changeProfile: "Změnit profil",
+            selectProfile: "Vyberte profil ->",
           },
           listOverview: {
             myLists: "Moje seznamy",
@@ -104,7 +111,7 @@ i18n
           modalsForms: {
             createListModal: {
               enterName: "Zadejte jméno pro seznam",
-              enterIds: "Zadejte ID uživatelů, které chcete pozvat",
+              enterIds: "Můžete zadat ID uživatelů, které chcete pozvat",
               createButton: "Vytvořit seznam",
             },
             deleteListModal: {
@@ -125,10 +132,15 @@ i18n
               guestList: "Seznam hostů",
               enterUserId: "Pro přidání uživatele, zadejte jeho ID",
               addUserButton: "Přidat uživatele",
+              userAddedFailedMessage: "Failed to add user. Invalid ID.",
               removeUserButton: "Odstranit uživatele",
               leaveListButton: "Opustit seznam",
               userAddedMessage: "Uživatel přidán úspěšně",
               userRemovedMessage: "Uživatel odebrán úspěšně",
+            },
+            announceModal: {
+              message:
+                "Tato aplikace je hostována na Renderu a po delší neaktivitě může chvíli trvat, než zareaguje.",
             },
           },
         },

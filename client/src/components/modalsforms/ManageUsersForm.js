@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ListDetailContext } from "../../providers/ListDetailProvider";
 import { UserContext } from "../../providers/UserProvider";
-import { Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 
 const ManageUsers = () => {
@@ -9,26 +8,20 @@ const ManageUsers = () => {
   const { theList, manageUsers } = useContext(ListDetailContext);
   const { userList, loggedInUser } = useContext(UserContext);
   const [userID, setUserID] = useState("");
-  const [message, setMessage] = useState("");
-  const [showModal, setShowModal] = useState(false);
-  const handleClose = () => setShowModal(false);
 
   const guests = userList.filter((user) => theList.guests.includes(user.id));
 
   const handleSubmit = (userID, action) => {
-    setShowModal(true);
     manageUsers(userID, action);
   };
 
   const handleAdd = () => {
-    setMessage(t("modalsForms.manageUsersModal.userAddedMessage"));
     const action = "add";
     handleSubmit(userID, action);
     setUserID("");
   };
 
   const handleRemove = (userId) => {
-    setMessage(t("modalsForms.manageUsersModal.userRemovedMessage"));
     const action = "remove";
     handleSubmit(userId, action);
     setUserID("");
@@ -67,7 +60,7 @@ const ManageUsers = () => {
             id="invite-user"
             name="inviteUser"
             className="form-control"
-            placeholder="e.g., 123"
+            placeholder="e.g., 6768730c0cf44d341f8b4d50"
             value={userID}
             onChange={(e) => setUserID(e.target.value)}
           />
@@ -90,17 +83,6 @@ const ManageUsers = () => {
           {t("modalsForms.manageUsersModal.leaveListButton")}
         </button>
       )}
-      {/* <Modal show={showModal} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title></Modal.Title>
-        </Modal.Header>
-        <Modal.Body>{message}</Modal.Body>
-        <Modal.Footer>
-          <button className="btn btn-secondary" onClick={() => handleClose()}>
-            Ok
-          </button>
-        </Modal.Footer>
-      </Modal> */}
     </form>
   );
 };

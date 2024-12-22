@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect, React } from "react";
+import axios from "axios";
 import { UserContext } from "./UserProvider";
 import { useParams } from "react-router-dom";
 
@@ -16,6 +17,7 @@ export const ListDetailContext = createContext();
 function ListDetailProvider({ children }) {
   const { activeList, setActiveList, fetchUsers } = useContext(UserContext);
   const [theList, setTheList] = useState("");
+  const [error, setError] = useState("");
   const { id } = useParams();
 
   useEffect(() => {
@@ -23,6 +25,10 @@ function ListDetailProvider({ children }) {
       setActiveList(id);
     }
   }, [id, activeList, setActiveList]);
+
+  useEffect(() => {
+    fetchList();
+  }, [activeList]);
 
   const fetchList = async () => {
     if (activeList) {
@@ -34,10 +40,6 @@ function ListDetailProvider({ children }) {
       }
     }
   };
-
-  useEffect(() => {
-    fetchList();
-  }, [activeList]);
 
   useEffect(() => {
     fetchUsers();
@@ -62,8 +64,17 @@ function ListDetailProvider({ children }) {
       await manageGuests(listId, updateData);
       const fetchedList = await getList(activeList);
       setTheList(fetchedList);
-    } catch (err) {
-      console.error("Error updating list:", err);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        if (error.response && error.response.status === 400) {
+          setError(
+            error.response.data.message ||
+              "Bad Request: Please check your input."
+          );
+        } else {
+          setError("An unexpected error occurred. Please try again later.");
+        }
+      }
     }
   };
 
@@ -108,6 +119,8 @@ function ListDetailProvider({ children }) {
 
   const value = {
     theList,
+    error,
+    setError,
     fetchList,
     changeName,
     addItem,

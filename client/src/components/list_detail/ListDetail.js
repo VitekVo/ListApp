@@ -1,50 +1,38 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { ListDetailContext } from "../../providers/ListDetailProvider";
-import { UserContext } from "../../providers/UserProvider";
-import { useNavigate } from "react-router-dom";
 
 import ControlPanel from "./ControlPanel";
 import ItemOverview from "./ItemOverview";
 import TopBarDetail from "./TopBarDetail";
+import NoAccessModal from "../modalsforms/NoAccessModal";
+import { UserContext } from "../../providers/UserProvider";
+import { useNavigate } from "react-router-dom";
 
 function ListDetail() {
   const { theList } = useContext(ListDetailContext);
   const { loggedInUser } = useContext(UserContext);
-  const [userHasAccess, setUserHasAccess] = useState(false);
-
+  const [userAccess, setUserAccess] = useState(false);
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   if (theList?.host && loggedInUser) {
-  //     const access =
-  //       loggedInUser === theList.host || theList.guests.includes(loggedInUser);
-  //     setUserHasAccess(access);
-  //   }
-  // }, [loggedInUser, theList]);
+  useEffect(() => {
+    setUserAccess(
+      loggedInUser === theList.host || theList.guests.includes(loggedInUser)
+    );
+  }, [loggedInUser, theList]);
 
-  // useEffect(() => {
-  //   if (!userHasAccess) {
-  //     const timer = setTimeout(() => {
-  //       navigate("/");
-  //     }, 3000);
+  useEffect(() => {
+    if (!userAccess) {
+      const timer = setTimeout(() => {
+        navigate("/");
+      }, 3000);
 
-  //     return () => clearTimeout(timer);
-  //   }
-  // }, [userHasAccess, navigate]);
-
-  // if (!userHasAccess) {
-  //   return (
-  //     <div className="access-denied">
-  //       <h3>Access Denied</h3>
-  //       <p>
-  //         You do not have access to this list. Redirecting to List Overview...
-  //       </p>
-  //     </div>
-  //   );
-  // }
+      return () => clearTimeout(timer);
+    }
+  }, [userAccess, navigate]);
 
   return (
     <div className="list-detail">
+      {!userAccess && <NoAccessModal />}
       <TopBarDetail />
       <ControlPanel />
       <ItemOverview />

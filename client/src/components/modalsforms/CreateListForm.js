@@ -54,7 +54,7 @@ const CreateList = ({ onClose }) => {
           id="guest-input"
           name="guestInput"
           className="form-control"
-          placeholder="e.g., 123, 234, 345,..."
+          placeholder="e.g., 6768730c0cf44d341f8b4d50,..."
           value={guestInput}
           onChange={(e) => setGuestInput(e.target.value)}
         />

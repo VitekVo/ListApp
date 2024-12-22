@@ -5,6 +5,7 @@ import GuestLists from "./GuestLists";
 import LoadingModal from "../modalsforms/LoadingModal";
 import { UserContext } from "../../providers/UserProvider";
 import { ListOverviewContext } from "../../providers/ListOverviewProvider";
+import AnnounceModal from "../modalsforms/AnnounceModal";
 
 function ListOverview() {
   const { loggedInUser, loading } = useContext(UserContext);
@@ -14,14 +15,17 @@ function ListOverview() {
   const guestLists = lists.filter((list) => list.guests.includes(loggedInUser));
 
   return (
-    <div className="list-overview">
-      <LoadingModal loading={loading} />
-      <TopBarOverview />
-      <div className="grid-lists">
-        <HostLists hostLists={hostLists} />
-        <GuestLists guestLists={guestLists} />
+    <>
+      <AnnounceModal />
+      <div className="list-overview">
+        <LoadingModal loading={loading} />
+        <TopBarOverview />
+        <div className="grid-lists">
+          <HostLists hostLists={hostLists} />
+          <GuestLists guestLists={guestLists} />
+        </div>
       </div>
-    </div>
+    </>
   );
 }
 
